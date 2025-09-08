@@ -96,3 +96,4 @@ Tests use Hypothesis for property-based testing, ensuring that generated lightcu
 
 ## Python Version
 Requires Python 3.11 or higher to leverage modern Python features.
+- Run tests using nox

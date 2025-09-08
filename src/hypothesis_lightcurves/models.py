@@ -65,11 +65,16 @@ class Lightcurve:
     
     def normalize(self) -> "Lightcurve":
         """Return a normalized copy of the lightcurve (mean=0, std=1)."""
-        normalized_flux = (self.flux - self.mean_flux) / self.std_flux
-        
-        normalized_flux_err = None
-        if self.flux_err is not None:
-            normalized_flux_err = self.flux_err / self.std_flux
+        # Handle edge case where std is zero (constant flux)
+        if self.std_flux == 0 or np.isclose(self.std_flux, 0):
+            # Return copy with flux shifted to zero mean
+            normalized_flux = self.flux - self.mean_flux
+            normalized_flux_err = self.flux_err.copy() if self.flux_err is not None else None
+        else:
+            normalized_flux = (self.flux - self.mean_flux) / self.std_flux
+            normalized_flux_err = None
+            if self.flux_err is not None:
+                normalized_flux_err = self.flux_err / self.std_flux
         
         new_modifications = self.modifications.copy()
         new_modifications.append("normalized")
