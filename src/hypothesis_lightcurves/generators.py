@@ -1,6 +1,7 @@
 """Hypothesis strategies for generating lightcurves."""
 
-from typing import Optional, Callable
+from collections.abc import Callable
+from typing import TypeVar
 
 import numpy as np
 from hypothesis import strategies as st
@@ -8,95 +9,180 @@ from hypothesis.extra import numpy as npst
 
 from hypothesis_lightcurves.models import Lightcurve
 from hypothesis_lightcurves.modifiers import (
-    add_periodic_signal,
-    add_transient_event,
     add_noise,
     add_outliers,
-    add_gaps,
-    add_trend,
-    add_flares,
+    add_periodic_signal,
+    add_transient_event,
 )
+
+# Type variable for strategy resolution
+T = TypeVar("T")
+
+
+def resolve_strategy(draw: st.DrawFn, value_or_strategy: T | st.SearchStrategy[T]) -> T:
+    """Resolve a value that might be a strategy or a static value.
+
+    Args:
+        draw: Hypothesis draw function
+        value_or_strategy: Either a static value or a hypothesis strategy
+
+    Returns:
+        The resolved value
+    """
+    if isinstance(value_or_strategy, st.SearchStrategy):
+        return draw(value_or_strategy)  # type: ignore[no-any-return]
+    return value_or_strategy
 
 
 @st.composite
 def baseline_lightcurves(
     draw: st.DrawFn,
+    n_points: int | st.SearchStrategy[int] | None = None,
     min_points: int = 10,
     max_points: int = 1000,
-    min_time: float = 0.0,
-    max_time: float = 100.0,
-    baseline_type: str = "flat",
-    baseline_flux: float = 100.0,
-    time_sampling: str = "uniform",
+    min_time: float | st.SearchStrategy[float] = 0.0,
+    max_time: float | st.SearchStrategy[float] = 100.0,
+    duration: float | st.SearchStrategy[float] | None = None,
+    start_time: float | st.SearchStrategy[float] | None = None,
+    baseline_type: str | st.SearchStrategy[str] = "flat",
+    baseline_flux: float | st.SearchStrategy[float] = 100.0,
+    time_sampling: str | st.SearchStrategy[str] = "uniform",
 ) -> Lightcurve:
     """Generate baseline lightcurves with simple patterns.
-    
+
+    This generator supports both static values and hypothesis strategies for all parameters,
+    providing maximum flexibility for test generation.
+
     Args:
         draw: Hypothesis draw function
-        min_points: Minimum number of data points
-        max_points: Maximum number of data points
-        min_time: Minimum time value
-        max_time: Maximum time value
-        baseline_type: Type of baseline ('flat', 'random_walk', 'smooth')
-        baseline_flux: Base flux level for flat baseline
-        time_sampling: Time sampling pattern ('uniform', 'random', 'irregular')
-    
+        n_points: Number of data points (strategy or int). If None, uses min/max_points
+        min_points: Minimum number of data points (used if n_points is None)
+        max_points: Maximum number of data points (used if n_points is None)
+        min_time: Minimum time value (strategy or float)
+        max_time: Maximum time value (strategy or float)
+        duration: Duration of lightcurve (strategy or float). If None, computed from time range
+        start_time: Start time of lightcurve (strategy or float). If None, uses min_time
+        baseline_type: Type of baseline ('flat', 'random_walk', 'smooth') (strategy or str)
+        baseline_flux: Base flux level for flat baseline (strategy or float)
+        time_sampling: Time sampling pattern ('uniform', 'random', 'irregular') (strategy or str)
+
     Returns:
         A baseline Lightcurve object
+
+    Examples:
+        # Using static values
+        baseline_lightcurves(n_points=100, baseline_type="flat", baseline_flux=50.0)
+
+        # Using strategies
+        baseline_lightcurves(
+            n_points=st.integers(50, 200),
+            baseline_type=st.sampled_from(["flat", "smooth"]),
+            baseline_flux=st.floats(80, 120)
+        )
+
+        # Mixed usage
+        baseline_lightcurves(
+            baseline_type="flat",
+            baseline_flux=st.floats(90, 110)
+        )
     """
-    n_points = draw(st.integers(min_value=min_points, max_value=max_points))
-    
+    # Resolve n_points
+    if n_points is None:
+        n_points_value = draw(st.integers(min_value=min_points, max_value=max_points))
+    else:
+        n_points_value = resolve_strategy(draw, n_points)
+
+    # Resolve other parameters
+    min_time_value = resolve_strategy(draw, min_time)
+    max_time_value = resolve_strategy(draw, max_time)
+    baseline_type_value = resolve_strategy(draw, baseline_type)
+    baseline_flux_value = resolve_strategy(draw, baseline_flux)
+    time_sampling_value = resolve_strategy(draw, time_sampling)
+
     # Generate time array based on sampling pattern
-    if time_sampling == "uniform":
-        duration = draw(st.floats(min_value=max_time/2, max_value=max_time))
-        start_time = draw(st.floats(min_value=min_time, max_value=min_time + 10))
-        time = np.linspace(start_time, start_time + duration, n_points)
-    elif time_sampling == "random":
+    if time_sampling_value == "uniform":
+        # Resolve duration and start_time
+        if duration is None:
+            duration_value = draw(
+                st.floats(
+                    min_value=(max_time_value - min_time_value) / 2,
+                    max_value=max_time_value - min_time_value,
+                )
+            )
+        else:
+            duration_value = resolve_strategy(draw, duration)
+
+        if start_time is None:
+            start_time_value = draw(
+                st.floats(
+                    min_value=min_time_value,
+                    max_value=min(min_time_value + 10, max_time_value - duration_value),
+                )
+            )
+        else:
+            start_time_value = resolve_strategy(draw, start_time)
+
+        time = np.linspace(start_time_value, start_time_value + duration_value, n_points_value)
+
+    elif time_sampling_value == "random":
         time = draw(
             npst.arrays(
                 dtype=np.float64,
-                shape=n_points,
-                elements=st.floats(min_value=min_time, max_value=max_time),
+                shape=n_points_value,
+                elements=st.floats(min_value=min_time_value, max_value=max_time_value),
                 unique=True,
             )
         )
         time = np.sort(time)
+
     else:  # irregular
         # Create irregular sampling with clusters
         n_clusters = draw(st.integers(min_value=3, max_value=10))
-        points_per_cluster = n_points // n_clusters
-        time_list = []
+        points_per_cluster = n_points_value // n_clusters
+        remaining_points = n_points_value % n_clusters
+        time_list: list[float] = []
         for i in range(n_clusters):
-            cluster_center = draw(st.floats(min_value=min_time, max_value=max_time))
+            # Add extra points to the first few clusters to ensure we get exactly n_points_value
+            extra_points = 1 if i < remaining_points else 0
+            cluster_size = points_per_cluster + extra_points
+            cluster_center = draw(st.floats(min_value=min_time_value, max_value=max_time_value))
             cluster_width = draw(st.floats(min_value=0.5, max_value=5.0))
-            cluster_times = np.random.normal(cluster_center, cluster_width, points_per_cluster)
+            cluster_times = np.random.normal(cluster_center, cluster_width, cluster_size)
             time_list.extend(cluster_times)
-        time = np.sort(np.array(time_list[:n_points]))
-    
+        time = np.sort(np.array(time_list))
+
     # Generate baseline flux based on type
-    if baseline_type == "flat":
-        flux_value = draw(st.floats(min_value=baseline_flux * 0.8, max_value=baseline_flux * 1.2))
-        flux = np.full(n_points, flux_value)
-    elif baseline_type == "random_walk":
+    if baseline_type_value == "flat":
+        # Allow some variation around baseline_flux
+        flux_variation = draw(st.floats(min_value=0.8, max_value=1.2))
+        flux = np.full(n_points_value, baseline_flux_value * flux_variation)
+
+    elif baseline_type_value == "random_walk":
         # Generate smooth random walk
         step_size = draw(st.floats(min_value=0.001, max_value=0.01))
-        steps = np.random.normal(0, step_size * baseline_flux, n_points)
-        flux = baseline_flux + np.cumsum(steps)
+        steps = np.random.normal(0, step_size * baseline_flux_value, n_points_value)
+        flux = baseline_flux_value + np.cumsum(steps)
+
     else:  # smooth
         # Generate smooth baseline using low-frequency sinusoids
         n_components = draw(st.integers(min_value=1, max_value=3))
-        flux = np.full(n_points, baseline_flux)
+        flux = np.full(n_points_value, baseline_flux_value)
+        time_range = max_time_value - min_time_value
         for _ in range(n_components):
-            period = draw(st.floats(min_value=max_time/2, max_value=max_time*2))
-            amplitude = draw(st.floats(min_value=0.01, max_value=0.05)) * baseline_flux
-            phase = draw(st.floats(min_value=0, max_value=2*np.pi))
+            period = draw(st.floats(min_value=time_range / 2, max_value=time_range * 2))
+            amplitude = draw(st.floats(min_value=0.01, max_value=0.05)) * baseline_flux_value
+            phase = draw(st.floats(min_value=0, max_value=2 * np.pi))
             flux += amplitude * np.sin(2 * np.pi * time / period + phase)
-    
+
     return Lightcurve(
         time=time,
         flux=flux,
         flux_err=None,
-        metadata={"baseline_type": baseline_type, "time_sampling": time_sampling},
+        metadata={
+            "baseline_type": baseline_type_value,
+            "time_sampling": time_sampling_value,
+            "baseline_flux": baseline_flux_value,
+        },
         modifications=["baseline"],
     )
 
@@ -104,59 +190,62 @@ def baseline_lightcurves(
 @st.composite
 def modified_lightcurves(
     draw: st.DrawFn,
-    base_strategy: Optional[st.SearchStrategy[Lightcurve]] = None,
-    modifiers: Optional[list[Callable[[Lightcurve], Lightcurve]]] = None,
-    modifier_params: Optional[dict] = None,
+    base_strategy: st.SearchStrategy[Lightcurve] | None = None,
+    modifiers: list[Callable[[Lightcurve], Lightcurve]] | None = None,
+    modifier_params: dict | None = None,
 ) -> Lightcurve:
     """Generate lightcurves by applying modifiers to a baseline.
-    
+
     Args:
         draw: Hypothesis draw function
         base_strategy: Strategy for generating the baseline lightcurve
         modifiers: List of modifier functions to potentially apply
         modifier_params: Optional parameters for modifiers
-    
+
     Returns:
         A modified Lightcurve object
     """
     # Use default baseline if not provided
     if base_strategy is None:
         base_strategy = baseline_lightcurves()
-    
+
     # Start with baseline
     lc = draw(base_strategy)
-    
+
     # Default modifiers if not provided
     if modifiers is None:
-        modifiers = [add_noise, add_periodic_signal, add_outliers]
-    
+        modifiers = [add_noise, add_periodic_signal, add_outliers]  # type: ignore[list-item]
+
     # Apply random subset of modifiers
     n_modifiers = draw(st.integers(min_value=0, max_value=len(modifiers)))
-    selected_modifiers = draw(st.lists(
-        st.sampled_from(modifiers),
-        min_size=n_modifiers,
-        max_size=n_modifiers,
-        unique=True,
-    ))
-    
+    selected_modifiers = draw(
+        st.lists(
+            st.sampled_from(modifiers),
+            min_size=n_modifiers,
+            max_size=n_modifiers,
+            unique=True,
+        )
+    )
+
     # Apply each modifier with random parameters
     for modifier in selected_modifiers:
-        if modifier == add_noise:
-            lc = modifier(
+        modifier_name = modifier.__name__
+        if modifier_name == "add_noise":
+            lc = modifier(  # type: ignore[call-arg]
                 lc,
                 noise_type=draw(st.sampled_from(["gaussian", "poisson", "uniform"])),
                 level=draw(st.floats(min_value=0.001, max_value=0.1)) * lc.std_flux,
             )
-        elif modifier == add_periodic_signal:
+        elif modifier_name == "add_periodic_signal":
             duration = lc.duration
-            lc = modifier(
+            lc = modifier(  # type: ignore[call-arg]
                 lc,
-                period=draw(st.floats(min_value=duration/20, max_value=duration/2)),
+                period=draw(st.floats(min_value=duration / 20, max_value=duration / 2)),
                 amplitude=draw(st.floats(min_value=0.01, max_value=0.3)) * lc.std_flux,
-                phase=draw(st.floats(min_value=0, max_value=2*np.pi)),
+                phase=draw(st.floats(min_value=0, max_value=2 * np.pi)),
             )
-        elif modifier == add_transient_event:
-            lc = modifier(
+        elif modifier_name == "add_transient_event":
+            lc = modifier(  # type: ignore[call-arg]
                 lc,
                 peak_time=draw(st.floats(min_value=lc.time.min(), max_value=lc.time.max())),
                 peak_flux=draw(st.floats(min_value=0.5, max_value=3.0)) * lc.std_flux,
@@ -164,26 +253,26 @@ def modified_lightcurves(
                 decay_time=draw(st.floats(min_value=0.05, max_value=0.3)) * lc.duration,
                 event_type=draw(st.sampled_from(["burst", "dip"])),
             )
-        elif modifier == add_outliers:
-            lc = modifier(
+        elif modifier_name == "add_outliers":
+            lc = modifier(  # type: ignore[call-arg]
                 lc,
                 fraction=draw(st.floats(min_value=0.001, max_value=0.05)),
                 amplitude=draw(st.floats(min_value=3.0, max_value=10.0)),
             )
-        elif modifier == add_gaps:
-            lc = modifier(
+        elif modifier_name == "add_gaps":
+            lc = modifier(  # type: ignore[call-arg]
                 lc,
                 n_gaps=draw(st.integers(min_value=1, max_value=5)),
                 gap_fraction=draw(st.floats(min_value=0.05, max_value=0.3)),
             )
-        elif modifier == add_trend:
-            lc = modifier(
+        elif modifier_name == "add_trend":
+            lc = modifier(  # type: ignore[call-arg]
                 lc,
                 trend_type=draw(st.sampled_from(["linear", "quadratic", "exponential"])),
                 coefficient=draw(st.floats(min_value=-0.5, max_value=0.5)),
             )
-        elif modifier == add_flares:
-            lc = modifier(
+        elif modifier_name == "add_flares":
+            lc = modifier(  # type: ignore[call-arg]
                 lc,
                 n_flares=draw(st.integers(min_value=1, max_value=10)),
                 min_amplitude=draw(st.floats(min_value=0.1, max_value=0.5)),
@@ -195,11 +284,12 @@ def modified_lightcurves(
                 lc = modifier(lc, **modifier_params[modifier.__name__])
             else:
                 lc = modifier(lc)
-    
+
     return lc
 
 
 # Backward compatibility - keep original functions but implement using new pattern
+
 
 @st.composite
 def lightcurves(
@@ -215,9 +305,9 @@ def lightcurves(
     allow_inf: bool = False,
 ) -> Lightcurve:
     """Generate random lightcurves for property-based testing.
-    
+
     This function maintains backward compatibility with the original API.
-    
+
     Args:
         draw: Hypothesis draw function
         min_points: Minimum number of data points
@@ -229,12 +319,12 @@ def lightcurves(
         with_errors: Whether to include flux errors
         allow_nan: Whether to allow NaN values
         allow_inf: Whether to allow infinite values
-    
+
     Returns:
         A randomly generated Lightcurve object
     """
     n_points = draw(st.integers(min_value=min_points, max_value=max_points))
-    
+
     # Generate time array (sorted)
     time = draw(
         npst.arrays(
@@ -250,7 +340,7 @@ def lightcurves(
         )
     )
     time = np.sort(time)
-    
+
     # Generate flux array
     flux = draw(
         npst.arrays(
@@ -264,9 +354,9 @@ def lightcurves(
             ),
         )
     )
-    
+
     # Optionally generate flux errors
-    flux_err: Optional[np.ndarray] = None
+    flux_err: np.ndarray | None = None
     if with_errors:
         flux_err = draw(
             npst.arrays(
@@ -280,7 +370,7 @@ def lightcurves(
                 ),
             )
         )
-    
+
     return Lightcurve(
         time=time,
         flux=flux,
@@ -301,10 +391,10 @@ def periodic_lightcurves(
     with_noise: bool = True,
 ) -> Lightcurve:
     """Generate periodic lightcurves with sinusoidal patterns.
-    
+
     This function maintains backward compatibility with the original API,
     but now uses the composable pattern internally.
-    
+
     Args:
         draw: Hypothesis draw function
         min_points: Minimum number of data points
@@ -314,32 +404,33 @@ def periodic_lightcurves(
         min_amplitude: Minimum amplitude
         max_amplitude: Maximum amplitude
         with_noise: Whether to add noise to the signal
-    
+
     Returns:
         A randomly generated periodic Lightcurve object
     """
-    # Create baseline
+    # Create baseline using the new flexible API
     baseline_flux = draw(st.floats(min_value=10, max_value=100))
-    lc = draw(baseline_lightcurves(
-        min_points=min_points,
-        max_points=max_points,
-        baseline_type="flat",
-        baseline_flux=baseline_flux,
-        time_sampling="uniform",
-    ))
-    
+    lc = draw(
+        baseline_lightcurves(
+            n_points=st.integers(min_value=min_points, max_value=max_points),
+            baseline_type="flat",
+            baseline_flux=baseline_flux,
+            time_sampling="uniform",
+        )
+    )
+
     # Add periodic signal
     period = draw(st.floats(min_value=min_period, max_value=max_period))
     amplitude = draw(st.floats(min_value=min_amplitude, max_value=max_amplitude)) * baseline_flux
     phase = draw(st.floats(min_value=0, max_value=2 * np.pi))
-    
+
     lc = add_periodic_signal(lc, period=period, amplitude=amplitude, phase=phase)
-    
+
     # Add noise if requested
     if with_noise:
         noise_level = draw(st.floats(min_value=0.001, max_value=0.01)) * amplitude
         lc = add_noise(lc, noise_type="gaussian", level=noise_level)
-    
+
     return lc
 
 
@@ -356,10 +447,10 @@ def transient_lightcurves(
     max_decay_time: float = 50.0,
 ) -> Lightcurve:
     """Generate transient lightcurves (e.g., supernovae-like).
-    
+
     This function maintains backward compatibility with the original API,
     but now uses the composable pattern internally.
-    
+
     Args:
         draw: Hypothesis draw function
         min_points: Minimum number of data points
@@ -370,30 +461,31 @@ def transient_lightcurves(
         max_rise_time: Maximum rise time
         min_decay_time: Minimum decay time
         max_decay_time: Maximum decay time
-    
+
     Returns:
         A randomly generated transient Lightcurve object
     """
     # Create baseline
     baseline_flux = draw(st.floats(min_value=10, max_value=100))
     total_duration = max_peak_time + max_decay_time * 3
-    
-    lc = draw(baseline_lightcurves(
-        min_points=min_points,
-        max_points=max_points,
-        min_time=0.0,
-        max_time=total_duration,
-        baseline_type="flat",
-        baseline_flux=baseline_flux,
-        time_sampling="uniform",
-    ))
-    
+
+    lc = draw(
+        baseline_lightcurves(
+            n_points=st.integers(min_value=min_points, max_value=max_points),
+            min_time=0.0,
+            max_time=total_duration,
+            baseline_type="flat",
+            baseline_flux=baseline_flux,
+            time_sampling="uniform",
+        )
+    )
+
     # Add transient event
     peak_time = draw(st.floats(min_value=min_peak_time, max_value=max_peak_time))
     peak_flux = draw(st.floats(min_value=100, max_value=10000))
     rise_time = draw(st.floats(min_value=min_rise_time, max_value=max_rise_time))
     decay_time = draw(st.floats(min_value=min_decay_time, max_value=max_decay_time))
-    
+
     lc = add_transient_event(
         lc,
         peak_time=peak_time,
@@ -402,9 +494,9 @@ def transient_lightcurves(
         decay_time=decay_time,
         event_type="burst",
     )
-    
+
     # Add some noise
     noise_level = peak_flux * 0.01
     lc = add_noise(lc, noise_type="gaussian", level=noise_level)
-    
+
     return lc

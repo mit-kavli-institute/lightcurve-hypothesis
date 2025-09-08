@@ -4,20 +4,20 @@ __version__ = "0.1.0"
 
 from hypothesis_lightcurves.generators import (
     baseline_lightcurves,
-    modified_lightcurves,
     lightcurves,
+    modified_lightcurves,
     periodic_lightcurves,
     transient_lightcurves,
 )
 from hypothesis_lightcurves.models import Lightcurve
 from hypothesis_lightcurves.modifiers import (
-    add_periodic_signal,
-    add_transient_event,
+    add_flares,
+    add_gaps,
     add_noise,
     add_outliers,
-    add_gaps,
+    add_periodic_signal,
+    add_transient_event,
     add_trend,
-    add_flares,
 )
 
 __all__ = [
