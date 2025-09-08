@@ -1,6 +1,6 @@
 """Data models for representing lightcurves."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional
 
 import numpy as np
@@ -16,12 +16,14 @@ class Lightcurve:
         flux: Array of flux measurements
         flux_err: Optional array of flux uncertainties
         metadata: Optional dictionary for additional metadata
+        modifications: List of applied modifications (for tracking transformations)
     """
     
     time: npt.NDArray[np.float64]
     flux: npt.NDArray[np.float64]
     flux_err: Optional[npt.NDArray[np.float64]] = None
     metadata: Optional[dict] = None
+    modifications: list[str] = field(default_factory=list)
     
     def __post_init__(self) -> None:
         """Validate the lightcurve data."""
@@ -51,6 +53,16 @@ class Lightcurve:
         """Standard deviation of the flux."""
         return float(np.std(self.flux))
     
+    def copy(self) -> "Lightcurve":
+        """Create a deep copy of the lightcurve."""
+        return Lightcurve(
+            time=self.time.copy(),
+            flux=self.flux.copy(),
+            flux_err=self.flux_err.copy() if self.flux_err is not None else None,
+            metadata=self.metadata.copy() if self.metadata else None,
+            modifications=self.modifications.copy(),
+        )
+    
     def normalize(self) -> "Lightcurve":
         """Return a normalized copy of the lightcurve (mean=0, std=1)."""
         normalized_flux = (self.flux - self.mean_flux) / self.std_flux
@@ -59,9 +71,13 @@ class Lightcurve:
         if self.flux_err is not None:
             normalized_flux_err = self.flux_err / self.std_flux
         
+        new_modifications = self.modifications.copy()
+        new_modifications.append("normalized")
+        
         return Lightcurve(
             time=self.time.copy(),
             flux=normalized_flux,
             flux_err=normalized_flux_err,
             metadata=self.metadata.copy() if self.metadata else None,
+            modifications=new_modifications,
         )

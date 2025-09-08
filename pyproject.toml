@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 license = {file = "LICENSE"}
 authors = [
-    {name = "William Fong", email = ""},
+    {name = "William Fong", email = "willfong@mit.edu"},
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -36,8 +36,10 @@ dev = [
     "ruff>=0.1.0",
     "mypy>=1.0",
     "pre-commit>=3.0",
+    "nox>=2023.4.22",
     "ipython",
 ]
+docs = ["sphinx"]
 
 [project.urls]
 "Homepage" = "https://github.com/williamfong/lightcurve-hypothesis"
