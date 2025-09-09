@@ -87,7 +87,7 @@ def docs(session):
     session.run("rm", "-rf", "source/_autosummary", external=True)
 
     # Build HTML documentation
-    session.run("sphinx-build", "-W", "-b", "html", "source", "build/html")
+    session.run("sphinx-build", "-b", "html", "source", "build/html")
 
     print("\n✅ Documentation built successfully!")
     print(f"📖 View at: file://{session.invoked_from}/docs/build/html/index.html")

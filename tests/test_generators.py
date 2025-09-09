@@ -2,14 +2,13 @@
 
 import numpy as np
 from hypothesis import given, note
-from numpy import testing as npt
-
 from hypothesis_lightcurves.generators import (
     lightcurves,
     periodic_lightcurves,
     transient_lightcurves,
 )
 from hypothesis_lightcurves.models import Lightcurve
+from numpy import testing as npt
 
 
 class TestBasicLightcurveGenerator:

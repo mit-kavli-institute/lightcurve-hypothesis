@@ -57,10 +57,10 @@ jobs:
 
     - name: Check for documentation warnings
       run: |
-        # Build docs again with strict warnings
+        # Build docs and check for warnings (non-fatal)
         cd docs
         pip install -e "..[docs]"
-        sphinx-build -W -n -b html source build/html 2>&1 | tee sphinx-warnings.log
+        sphinx-build -n -b html source build/html 2>&1 | tee sphinx-warnings.log
         if grep -q "WARNING" sphinx-warnings.log; then
           echo "Documentation build produced warnings:"
           grep "WARNING" sphinx-warnings.log

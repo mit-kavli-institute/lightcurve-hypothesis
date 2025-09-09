@@ -90,16 +90,6 @@ This package helps you:
 * **Write better tests**: Focus on properties, not specific examples
 * **Improve robustness**: Test with realistic data complications
 
-Contents
---------
-
-.. toctree::
-   :maxdepth: 2
-
-   installation
-   quickstart
-   examples
-   api
 
 Indices and tables
 ==================
