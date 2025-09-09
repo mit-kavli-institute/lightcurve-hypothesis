@@ -22,12 +22,22 @@ T = TypeVar("T")
 def resolve_strategy(draw: st.DrawFn, value_or_strategy: T | st.SearchStrategy[T]) -> T:
     """Resolve a value that might be a strategy or a static value.
 
-    Args:
-        draw: Hypothesis draw function
-        value_or_strategy: Either a static value or a hypothesis strategy
+    Parameters
+    ----------
+    draw : hypothesis.strategies.DrawFn
+        Hypothesis draw function for resolving strategies.
+    value_or_strategy : T or hypothesis.strategies.SearchStrategy[T]
+        Either a static value or a hypothesis strategy that generates values of type T.
 
-    Returns:
-        The resolved value
+    Returns
+    -------
+    T
+        The resolved value, either the static value itself or a value drawn from the strategy.
+
+    Notes
+    -----
+    This helper function allows generator parameters to accept both static values
+    and Hypothesis strategies, providing flexibility in test generation.
     """
     if isinstance(value_or_strategy, st.SearchStrategy):
         return draw(value_or_strategy)  # type: ignore[no-any-return]
@@ -53,38 +63,63 @@ def baseline_lightcurves(
     This generator supports both static values and hypothesis strategies for all parameters,
     providing maximum flexibility for test generation.
 
-    Args:
-        draw: Hypothesis draw function
-        n_points: Number of data points (strategy or int). If None, uses min/max_points
-        min_points: Minimum number of data points (used if n_points is None)
-        max_points: Maximum number of data points (used if n_points is None)
-        min_time: Minimum time value (strategy or float)
-        max_time: Maximum time value (strategy or float)
-        duration: Duration of lightcurve (strategy or float). If None, computed from time range
-        start_time: Start time of lightcurve (strategy or float). If None, uses min_time
-        baseline_type: Type of baseline ('flat', 'random_walk', 'smooth') (strategy or str)
-        baseline_flux: Base flux level for flat baseline (strategy or float)
-        time_sampling: Time sampling pattern ('uniform', 'random', 'irregular') (strategy or str)
+    Parameters
+    ----------
+    draw : hypothesis.strategies.DrawFn
+        Hypothesis draw function for generating random values.
+    n_points : int or SearchStrategy[int] or None, optional
+        Number of data points. If None, drawn from [min_points, max_points].
+    min_points : int, default=10
+        Minimum number of data points when n_points is None.
+    max_points : int, default=1000
+        Maximum number of data points when n_points is None.
+    min_time : float or SearchStrategy[float], default=0.0
+        Minimum time value for the lightcurve.
+    max_time : float or SearchStrategy[float], default=100.0
+        Maximum time value for the lightcurve.
+    duration : float or SearchStrategy[float] or None, optional
+        Duration of lightcurve. If None, computed from time range.
+    start_time : float or SearchStrategy[float] or None, optional
+        Start time of lightcurve. If None, uses min_time.
+    baseline_type : str or SearchStrategy[str], default="flat"
+        Type of baseline: 'flat', 'random_walk', or 'smooth'.
+    baseline_flux : float or SearchStrategy[float], default=100.0
+        Base flux level for the baseline.
+    time_sampling : str or SearchStrategy[str], default="uniform"
+        Time sampling pattern: 'uniform', 'random', or 'irregular'.
 
-    Returns:
-        A baseline Lightcurve object
+    Returns
+    -------
+    Lightcurve
+        A baseline lightcurve with the specified characteristics.
 
-    Examples:
-        # Using static values
-        baseline_lightcurves(n_points=100, baseline_type="flat", baseline_flux=50.0)
+    Examples
+    --------
+    Using static values:
 
-        # Using strategies
-        baseline_lightcurves(
-            n_points=st.integers(50, 200),
-            baseline_type=st.sampled_from(["flat", "smooth"]),
-            baseline_flux=st.floats(80, 120)
-        )
+    >>> from hypothesis import given
+    >>> @given(lc=baseline_lightcurves(n_points=100, baseline_type="flat"))
+    >>> def test_flat_baseline(lc):
+    ...     assert lc.n_points == 100
+    ...     assert lc.std_flux < lc.mean_flux * 0.1  # Should be relatively flat
 
-        # Mixed usage
-        baseline_lightcurves(
-            baseline_type="flat",
-            baseline_flux=st.floats(90, 110)
-        )
+    Using strategies for flexible testing:
+
+    >>> from hypothesis import strategies as st
+    >>> @given(lc=baseline_lightcurves(
+    ...     n_points=st.integers(50, 200),
+    ...     baseline_type=st.sampled_from(["flat", "smooth"]),
+    ...     baseline_flux=st.floats(80, 120)
+    ... ))
+    >>> def test_variable_baseline(lc):
+    ...     assert 50 <= lc.n_points <= 200
+    ...     assert lc.metadata['baseline_type'] in ["flat", "smooth"]
+
+    Notes
+    -----
+    - All parameters can accept either static values or Hypothesis strategies
+    - The 'irregular' time sampling creates clustered observations
+    - Metadata is automatically populated with generation parameters
     """
     # Resolve n_points
     if n_points is None:
