@@ -1,0 +1,128 @@
+{
+ "create_gallery_plot": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.visualization",
+   "module_short": "hypothesis_lightcurves",
+   "name": "create_gallery_plot"
+  }
+ ],
+ "np.argmax": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "argmax"
+  }
+ ],
+ "np.max": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "max"
+  }
+ ],
+ "np.min": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "min"
+  }
+ ],
+ "np.random.normal": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy.random",
+   "module_short": "numpy.random",
+   "name": "normal"
+  }
+ ],
+ "np.random.seed": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy.random",
+   "module_short": "numpy.random",
+   "name": "seed"
+  }
+ ],
+ "np.std": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "std"
+  }
+ ],
+ "plot_lightcurve": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.visualization",
+   "module_short": "hypothesis_lightcurves",
+   "name": "plot_lightcurve"
+  }
+ ],
+ "plot_with_annotations": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.visualization",
+   "module_short": "hypothesis_lightcurves",
+   "name": "plot_with_annotations"
+  }
+ ],
+ "plt.show": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "show"
+  }
+ ],
+ "plt.subplots": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "subplots"
+  }
+ ],
+ "plt.suptitle": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "suptitle"
+  }
+ ],
+ "plt.tight_layout": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "tight_layout"
+  }
+ ],
+ "transient_lightcurves": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.generators",
+   "module_short": "hypothesis_lightcurves",
+   "name": "transient_lightcurves"
+  }
+ ]
+}

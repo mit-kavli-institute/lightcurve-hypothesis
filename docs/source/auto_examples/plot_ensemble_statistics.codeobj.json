@@ -1,0 +1,173 @@
+{
+ "calculate_periodogram": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.utils",
+   "module_short": "hypothesis_lightcurves.utils",
+   "name": "calculate_periodogram"
+  }
+ ],
+ "lightcurves": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.generators",
+   "module_short": "hypothesis_lightcurves",
+   "name": "lightcurves"
+  }
+ ],
+ "np.argmax": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "argmax"
+  }
+ ],
+ "np.diff": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "diff"
+  }
+ ],
+ "np.inf": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "inf"
+  }
+ ],
+ "np.linspace": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "linspace"
+  }
+ ],
+ "np.mean": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "mean"
+  }
+ ],
+ "np.median": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "median"
+  }
+ ],
+ "np.min": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "min"
+  }
+ ],
+ "np.random.seed": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy.random",
+   "module_short": "numpy.random",
+   "name": "seed"
+  }
+ ],
+ "np.sqrt": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "sqrt"
+  }
+ ],
+ "np.std": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "std"
+  }
+ ],
+ "periodic_lightcurves": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.generators",
+   "module_short": "hypothesis_lightcurves",
+   "name": "periodic_lightcurves"
+  }
+ ],
+ "plot_lightcurve": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.visualization",
+   "module_short": "hypothesis_lightcurves",
+   "name": "plot_lightcurve"
+  }
+ ],
+ "plt.show": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "show"
+  }
+ ],
+ "plt.subplots": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "subplots"
+  }
+ ],
+ "plt.suptitle": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "suptitle"
+  }
+ ],
+ "plt.tight_layout": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "tight_layout"
+  }
+ ],
+ "transient_lightcurves": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.generators",
+   "module_short": "hypothesis_lightcurves",
+   "name": "transient_lightcurves"
+  }
+ ]
+}

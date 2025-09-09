@@ -1,0 +1,119 @@
+{
+ "calculate_periodogram": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.utils",
+   "module_short": "hypothesis_lightcurves.utils",
+   "name": "calculate_periodogram"
+  }
+ ],
+ "create_gallery_plot": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.visualization",
+   "module_short": "hypothesis_lightcurves",
+   "name": "create_gallery_plot"
+  }
+ ],
+ "np.argmax": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "argmax"
+  }
+ ],
+ "np.linspace": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "linspace"
+  }
+ ],
+ "np.random.seed": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy.random",
+   "module_short": "numpy.random",
+   "name": "seed"
+  }
+ ],
+ "periodic_lightcurves": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.generators",
+   "module_short": "hypothesis_lightcurves",
+   "name": "periodic_lightcurves"
+  }
+ ],
+ "plot_lightcurve": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.visualization",
+   "module_short": "hypothesis_lightcurves",
+   "name": "plot_lightcurve"
+  }
+ ],
+ "plot_phase_folded": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.visualization",
+   "module_short": "hypothesis_lightcurves",
+   "name": "plot_phase_folded"
+  }
+ ],
+ "plot_with_annotations": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.visualization",
+   "module_short": "hypothesis_lightcurves",
+   "name": "plot_with_annotations"
+  }
+ ],
+ "plt.show": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "show"
+  }
+ ],
+ "plt.subplots": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "subplots"
+  }
+ ],
+ "plt.suptitle": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "suptitle"
+  }
+ ],
+ "plt.tight_layout": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "tight_layout"
+  }
+ ]
+}
