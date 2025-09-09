@@ -59,6 +59,25 @@ pre-commit run --all-files
 pre-commit autoupdate
 ```
 
+### Documentation
+```bash
+# Build HTML documentation
+nox -s docs
+
+# Or manually:
+cd docs
+make html
+# View at docs/build/html/index.html
+
+# Clean documentation build
+cd docs
+make clean
+
+# Check documentation coverage
+cd docs
+make coverage
+```
+
 ### Pre-commit Hooks
 The project uses pre-commit to automatically run code quality checks before commits. The following hooks are configured:
 - **black**: Formats code according to project style (line length 100, Python 3.11+)

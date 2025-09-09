@@ -1,0 +1,339 @@
+{
+  "examples": [
+    {
+      "name": "basic_random",
+      "description": "Basic Random Lightcurve",
+      "category": "basic",
+      "parameters": {
+        "type": "random",
+        "n_points": 424
+      },
+      "n_points": 424,
+      "duration": 100.0,
+      "mean_flux": 20261.59671595496,
+      "std_flux": 108701.81675526402,
+      "has_errors": false,
+      "modifications": [
+        "random"
+      ],
+      "image_path": "_static/gallery/images/basic_random.png",
+      "code_path": "_static/gallery/code/basic_random.py",
+      "data_path": "_static/gallery/data/basic_random.npz"
+    },
+    {
+      "name": "basic_with_errors",
+      "description": "Lightcurve with Error Bars",
+      "category": "basic",
+      "parameters": {
+        "type": "with_errors",
+        "n_points": 40
+      },
+      "n_points": 40,
+      "duration": 99.99999999999999,
+      "mean_flux": 123127.36533619199,
+      "std_flux": 262787.5176899578,
+      "has_errors": true,
+      "modifications": [
+        "random"
+      ],
+      "image_path": "_static/gallery/images/basic_with_errors.png",
+      "code_path": "_static/gallery/code/basic_with_errors.py",
+      "data_path": "_static/gallery/data/basic_with_errors.npz"
+    },
+    {
+      "name": "baseline_flat",
+      "description": "Flat Baseline",
+      "category": "baseline",
+      "parameters": {
+        "type": "flat",
+        "n_points": 200
+      },
+      "n_points": 200,
+      "duration": 95.94565376270573,
+      "mean_flux": 111.33490292697493,
+      "std_flux": 1.4210854715202004e-14,
+      "has_errors": false,
+      "modifications": [
+        "baseline"
+      ],
+      "image_path": "_static/gallery/images/baseline_flat.png",
+      "code_path": "_static/gallery/code/baseline_flat.py",
+      "data_path": "_static/gallery/data/baseline_flat.npz"
+    },
+    {
+      "name": "baseline_random_walk",
+      "description": "Random Walk Baseline",
+      "category": "baseline",
+      "parameters": {
+        "type": "random_walk",
+        "n_points": 300
+      },
+      "n_points": 300,
+      "duration": 50.0,
+      "mean_flux": 109.19383041581702,
+      "std_flux": 5.747267667122462,
+      "has_errors": false,
+      "modifications": [
+        "baseline"
+      ],
+      "image_path": "_static/gallery/images/baseline_random_walk.png",
+      "code_path": "_static/gallery/code/baseline_random_walk.py",
+      "data_path": "_static/gallery/data/baseline_random_walk.npz"
+    },
+    {
+      "name": "baseline_smooth",
+      "description": "Smooth Baseline",
+      "category": "baseline",
+      "parameters": {
+        "type": "smooth",
+        "n_points": 250
+      },
+      "n_points": 250,
+      "duration": 73.72655535067702,
+      "mean_flux": 99.23812589337611,
+      "std_flux": 4.222707547221117,
+      "has_errors": false,
+      "modifications": [
+        "baseline"
+      ],
+      "image_path": "_static/gallery/images/baseline_smooth.png",
+      "code_path": "_static/gallery/code/baseline_smooth.py",
+      "data_path": "_static/gallery/data/baseline_smooth.npz"
+    },
+    {
+      "name": "periodic_simple",
+      "description": "Simple Periodic Signal",
+      "category": "periodic",
+      "parameters": {
+        "period": 2.5,
+        "amplitude": 0.1,
+        "n_points": 200
+      },
+      "n_points": 200,
+      "duration": 94.66183083817818,
+      "mean_flux": 84.10401876494208,
+      "std_flux": 5.590696824191149,
+      "has_errors": false,
+      "modifications": [
+        "baseline",
+        "periodic_signal(period=2.50, amplitude=7.912)"
+      ],
+      "image_path": "_static/gallery/images/periodic_simple.png",
+      "code_path": "_static/gallery/code/periodic_simple.py",
+      "data_path": "_static/gallery/data/periodic_simple.npz"
+    },
+    {
+      "name": "periodic_with_noise",
+      "description": "Periodic Signal with Noise",
+      "category": "periodic",
+      "parameters": {
+        "period": 1.0,
+        "amplitude": 0.2,
+        "with_noise": true,
+        "n_points": 300
+      },
+      "n_points": 300,
+      "duration": 54.83087787302513,
+      "mean_flux": 115.22705779262809,
+      "std_flux": 12.873255818694084,
+      "has_errors": true,
+      "modifications": [
+        "baseline",
+        "periodic_signal(period=0.93, amplitude=18.211)",
+        "noise(gaussian, level=0.028)"
+      ],
+      "image_path": "_static/gallery/images/periodic_with_noise.png",
+      "code_path": "_static/gallery/code/periodic_with_noise.py",
+      "data_path": "_static/gallery/data/periodic_with_noise.npz"
+    },
+    {
+      "name": "periodic_multi",
+      "description": "Multi-periodic Signal",
+      "category": "periodic",
+      "parameters": {
+        "combined": true,
+        "n_points": 500
+      },
+      "n_points": 500,
+      "duration": 89.67427562507785,
+      "mean_flux": 70.57565634010342,
+      "std_flux": 6.406447423250642,
+      "has_errors": false,
+      "modifications": [
+        "baseline",
+        "periodic_signal(period=0.51, amplitude=9.004)"
+      ],
+      "image_path": "_static/gallery/images/periodic_multi.png",
+      "code_path": "_static/gallery/code/periodic_multi.py",
+      "data_path": "_static/gallery/data/periodic_multi.npz"
+    },
+    {
+      "name": "transient_supernova",
+      "description": "Supernova-like Transient",
+      "category": "transient",
+      "parameters": {
+        "type": "supernova-like",
+        "peak_time_range": "45-55",
+        "rise_time_range": "8-12",
+        "decay_time_range": "25-35"
+      },
+      "n_points": 200,
+      "duration": 85.90970353167056,
+      "mean_flux": 3153.9948719180447,
+      "std_flux": 2626.023586995955,
+      "has_errors": false,
+      "modifications": [
+        "baseline",
+        "transient_burst(t=52.7, peak=8719.0)"
+      ],
+      "image_path": "_static/gallery/images/transient_supernova.png",
+      "code_path": "_static/gallery/code/transient_supernova.py",
+      "data_path": "_static/gallery/data/transient_supernova.npz"
+    },
+    {
+      "name": "transient_flare",
+      "description": "Stellar Flare",
+      "category": "transient",
+      "parameters": {
+        "type": "flare",
+        "peak_time_range": "20-30",
+        "rise_time_range": "0.3-0.7",
+        "decay_time_range": "1.5-2.5"
+      },
+      "n_points": 150,
+      "duration": 35.86155502972389,
+      "mean_flux": 65.95296100260984,
+      "std_flux": 18.91221136564647,
+      "has_errors": false,
+      "modifications": [
+        "baseline",
+        "transient_burst(t=24.6, peak=100.0)"
+      ],
+      "image_path": "_static/gallery/images/transient_flare.png",
+      "code_path": "_static/gallery/code/transient_flare.py",
+      "data_path": "_static/gallery/data/transient_flare.npz"
+    },
+    {
+      "name": "transient_eclipse",
+      "description": "Eclipse-like Dip",
+      "category": "transient",
+      "parameters": {
+        "type": "eclipse-like",
+        "peak_time_range": "25-35",
+        "symmetric": true
+      },
+      "n_points": 200,
+      "duration": 21.25,
+      "mean_flux": 33.846720454958415,
+      "std_flux": 1.4771245077844048,
+      "has_errors": false,
+      "modifications": [
+        "baseline",
+        "transient_burst(t=25.0, peak=100.0)"
+      ],
+      "image_path": "_static/gallery/images/transient_eclipse.png",
+      "code_path": "_static/gallery/code/transient_eclipse.py",
+      "data_path": "_static/gallery/data/transient_eclipse.npz"
+    },
+    {
+      "name": "modified_gaps",
+      "description": "Lightcurve with Data Gaps",
+      "category": "modified",
+      "parameters": {
+        "n_gaps": 3,
+        "gap_fraction": 0.1
+      },
+      "n_points": 270,
+      "duration": 86.05924807018101,
+      "mean_flux": 99.03913695131959,
+      "std_flux": 9.703982888746838,
+      "has_errors": false,
+      "modifications": [
+        "baseline",
+        "periodic_signal(period=1.51, amplitude=13.720)",
+        "gaps(n=3, fraction=0.10)"
+      ],
+      "image_path": "_static/gallery/images/modified_gaps.png",
+      "code_path": "_static/gallery/code/modified_gaps.py"
+    },
+    {
+      "name": "modified_outliers",
+      "description": "Lightcurve with Outliers",
+      "category": "modified",
+      "parameters": {
+        "outlier_fraction": 0.05,
+        "outlier_amplitude": 5.0
+      },
+      "n_points": 200,
+      "duration": 79.54019147808845,
+      "mean_flux": 98.51263347252937,
+      "std_flux": 5.243430000948046,
+      "has_errors": false,
+      "modifications": [
+        "baseline",
+        "outliers(fraction=0.050, amplitude=5.0)"
+      ],
+      "image_path": "_static/gallery/images/modified_outliers.png",
+      "code_path": "_static/gallery/code/modified_outliers.py"
+    },
+    {
+      "name": "modified_trend",
+      "description": "Lightcurve with Quadratic Trend",
+      "category": "modified",
+      "parameters": {
+        "trend_type": "quadratic",
+        "coefficient": 0.2
+      },
+      "n_points": 250,
+      "duration": 63.4079145574844,
+      "mean_flux": 10.98498053624067,
+      "std_flux": 1.043951873182841,
+      "has_errors": false,
+      "modifications": [
+        "baseline",
+        "periodic_signal(period=0.73, amplitude=1.196)",
+        "trend(quadratic, coef=0.200)"
+      ],
+      "image_path": "_static/gallery/images/modified_trend.png",
+      "code_path": "_static/gallery/code/modified_trend.py"
+    },
+    {
+      "name": "composite_realistic",
+      "description": "Realistic Observational Data",
+      "category": "composite",
+      "parameters": {
+        "base": "periodic",
+        "modifications": [
+          "noise",
+          "gaps",
+          "outliers"
+        ],
+        "n_points": 368
+      },
+      "n_points": 368,
+      "duration": 94.06385873610304,
+      "mean_flux": 51.671498522418275,
+      "std_flux": 3.5953339064783583,
+      "has_errors": true,
+      "modifications": [
+        "baseline",
+        "periodic_signal(period=1.14, amplitude=4.416)",
+        "noise(gaussian, level=0.010)",
+        "gaps(n=2, fraction=0.08)",
+        "outliers(fraction=0.020, amplitude=4.0)"
+      ],
+      "image_path": "_static/gallery/images/composite_realistic.png",
+      "code_path": "_static/gallery/code/composite_realistic.py",
+      "data_path": "_static/gallery/data/composite_realistic.npz"
+    }
+  ],
+  "categories": {
+    "basic": "Basic Lightcurves",
+    "baseline": "Baseline Patterns",
+    "periodic": "Periodic Signals",
+    "transient": "Transient Events",
+    "modified": "Modified Lightcurves",
+    "composite": "Composite Examples"
+  },
+  "total_examples": 15
+}

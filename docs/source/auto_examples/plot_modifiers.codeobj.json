@@ -1,0 +1,569 @@
+{
+ "add_gaps": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.modifiers",
+   "module_short": "hypothesis_lightcurves",
+   "name": "add_gaps"
+  }
+ ],
+ "add_noise": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.modifiers",
+   "module_short": "hypothesis_lightcurves",
+   "name": "add_noise"
+  }
+ ],
+ "add_outliers": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.modifiers",
+   "module_short": "hypothesis_lightcurves",
+   "name": "add_outliers"
+  }
+ ],
+ "add_trend": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.modifiers",
+   "module_short": "hypothesis_lightcurves",
+   "name": "add_trend"
+  }
+ ],
+ "ax": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Axes"
+  }
+ ],
+ "ax.text": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.text"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes.text"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Axes.text"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._base",
+   "module_short": "matplotlib.axes._base",
+   "name": "_AxesBase.text"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "_AxesBase.text"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "_AxesBase.text"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.artist",
+   "module_short": "matplotlib.artist",
+   "name": "Artist.text"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Artist.text"
+  }
+ ],
+ "ax.transAxes": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.transforms",
+   "module_short": "matplotlib.transforms",
+   "name": "BboxTransformTo"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "BboxTransformTo"
+  }
+ ],
+ "axes": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ndarray"
+  }
+ ],
+ "base_lc": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  }
+ ],
+ "base_lc.n_points": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.n_points"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.n_points"
+  }
+ ],
+ "base_lc.plot": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  }
+ ],
+ "fig": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.figure",
+   "module_short": "matplotlib.figure",
+   "name": "Figure"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Figure"
+  }
+ ],
+ "label": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "str"
+  }
+ ],
+ "lc": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  }
+ ],
+ "lc.copy": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.copy"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.copy"
+  }
+ ],
+ "lc_linear": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  }
+ ],
+ "lc_linear.plot": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  }
+ ],
+ "lc_quadratic": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  }
+ ],
+ "lc_quadratic.plot": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  }
+ ],
+ "lc_with_gaps": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  }
+ ],
+ "lc_with_gaps.n_points": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.n_points"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.n_points"
+  }
+ ],
+ "lc_with_outliers": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  }
+ ],
+ "mod": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "str"
+  }
+ ],
+ "periodic_lightcurves": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.generators",
+   "module_short": "hypothesis_lightcurves",
+   "name": "periodic_lightcurves"
+  }
+ ],
+ "plot_lightcurve_comparison": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.visualization",
+   "module_short": "hypothesis_lightcurves.visualization",
+   "name": "plot_lightcurve_comparison"
+  }
+ ],
+ "plt.show": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "show"
+  }
+ ],
+ "plt.subplots": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "subplots"
+  }
+ ],
+ "plt.tight_layout": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "tight_layout"
+  }
+ ],
+ "realistic_lc": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  }
+ ],
+ "realistic_lc.modifications": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "list"
+  }
+ ],
+ "realistic_lc.plot": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  }
+ ],
+ "stage_lc": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  }
+ ],
+ "stage_lc.plot": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  }
+ ],
+ "stages": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "list"
+  }
+ ],
+ "stages.append": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "builtin_function_or_method"
+  }
+ ]
+}
