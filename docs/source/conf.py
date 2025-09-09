@@ -23,6 +23,8 @@ extensions = [
     "numpydoc",
     "sphinx_copybutton",
     "myst_parser",
+    "sphinx_gallery.gen_gallery",
+    "matplotlib.sphinxext.plot_directive",
 ]
 
 # Add support for both RST and Markdown
@@ -109,3 +111,31 @@ exclude_patterns = []
 # Pygments style for code highlighting
 pygments_style = "sphinx"
 pygments_dark_style = "monokai"
+
+# Sphinx-gallery configuration
+sphinx_gallery_conf = {
+    "examples_dirs": ["../../examples"],  # Path to examples scripts
+    "gallery_dirs": ["auto_examples"],  # Where to save gallery generated output
+    "filename_pattern": r"\.py$",
+    "ignore_pattern": r"__pycache__|\.ipynb_checkpoints",
+    "plot_gallery": True,
+    "download_all_examples": False,
+    "abort_on_example_error": False,
+    "remove_config_comments": True,
+    "matplotlib_animations": True,
+    "image_scrapers": ("matplotlib",),
+    "first_notebook_cell": "%matplotlib inline",
+    "notebook_images": True,
+}
+
+# Matplotlib plot directive configuration
+plot_include_source = True
+plot_html_show_source_link = True
+plot_html_show_formats = True
+plot_formats = ["png"]
+plot_rcparams = {
+    "figure.figsize": (10, 6),
+    "figure.dpi": 100,
+    "savefig.bbox": "tight",
+    "savefig.dpi": 100,
+}

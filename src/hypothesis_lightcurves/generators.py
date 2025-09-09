@@ -530,8 +530,4 @@ def transient_lightcurves(
         event_type="burst",
     )
 
-    # Add some noise
-    noise_level = peak_flux * 0.01
-    lc = add_noise(lc, noise_type="gaussian", level=noise_level)
-
     return lc

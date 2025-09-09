@@ -1,6 +1,7 @@
 """Data models for representing lightcurves."""
 
 from dataclasses import dataclass, field
+from typing import Any
 
 import numpy as np
 import numpy.typing as npt
@@ -196,3 +197,67 @@ class Lightcurve:
             metadata=self.metadata.copy() if self.metadata else None,
             modifications=new_modifications,
         )
+
+    def plot(
+        self,
+        ax: object | None = None,
+        show_errors: bool = True,
+        title: str | None = None,
+        **kwargs: Any,
+    ) -> tuple[object, object]:
+        """Plot the lightcurve using matplotlib.
+
+        This is a convenience method that uses the visualization module
+        to create a plot of the lightcurve data.
+
+        Parameters
+        ----------
+        ax : matplotlib.axes.Axes or None, optional
+            Axes to plot on. If None, creates new figure and axes.
+        show_errors : bool, default=True
+            Whether to show error bars if available.
+        title : str or None, optional
+            Title for the plot. If None, uses metadata if available.
+        **kwargs : Any
+            Additional keyword arguments passed to plot_lightcurve.
+
+        Returns
+        -------
+        fig : matplotlib.figure.Figure
+            The figure object.
+        ax : matplotlib.axes.Axes
+            The axes object.
+
+        Raises
+        ------
+        ImportError
+            If matplotlib is not installed.
+
+        Examples
+        --------
+        >>> lc = Lightcurve(time=np.array([1, 2, 3]),
+        ...                 flux=np.array([10, 20, 15]))
+        >>> fig, ax = lc.plot(title="My Lightcurve")  # doctest: +SKIP
+
+        Notes
+        -----
+        This method requires matplotlib to be installed. Install it with:
+        ``pip install hypothesis-lightcurves[viz]`` or
+        ``pip install matplotlib``
+        """
+        try:
+            from hypothesis_lightcurves.visualization import plot_lightcurve
+        except ImportError as e:
+            raise ImportError(
+                "Matplotlib is required for plotting. "
+                "Install it with: pip install hypothesis-lightcurves[viz]"
+            ) from e
+
+        # Use metadata for title if not provided
+        if title is None and self.metadata:
+            if "source_id" in self.metadata:
+                title = f"Lightcurve: {self.metadata['source_id']}"
+            elif "name" in self.metadata:
+                title = f"Lightcurve: {self.metadata['name']}"
+
+        return plot_lightcurve(self, ax=ax, show_errors=show_errors, title=title, **kwargs)

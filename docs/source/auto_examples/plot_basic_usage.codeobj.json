@@ -1,0 +1,519 @@
+{
+ "add_noise": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.modifiers",
+   "module_short": "hypothesis_lightcurves",
+   "name": "add_noise"
+  }
+ ],
+ "ax": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Axes"
+  }
+ ],
+ "ax1": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Axes"
+  }
+ ],
+ "ax2": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes._axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.axes",
+   "module_short": "matplotlib.axes",
+   "name": "Axes"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Axes"
+  }
+ ],
+ "fig": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.figure",
+   "module_short": "matplotlib.figure",
+   "name": "Figure"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "Figure"
+  }
+ ],
+ "lc": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  }
+ ],
+ "lc.duration": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.duration"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.duration"
+  }
+ ],
+ "lc.mean_flux": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.mean_flux"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.mean_flux"
+  }
+ ],
+ "lc.n_points": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.n_points"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.n_points"
+  }
+ ],
+ "lc.plot": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  }
+ ],
+ "lc.std_flux": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.std_flux"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.std_flux"
+  }
+ ],
+ "lc_with_errors": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  }
+ ],
+ "lc_with_errors.plot": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  }
+ ],
+ "lightcurves": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.generators",
+   "module_short": "hypothesis_lightcurves",
+   "name": "lightcurves"
+  }
+ ],
+ "noisy_lc": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  }
+ ],
+ "noisy_lc.plot": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  }
+ ],
+ "normalized": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  }
+ ],
+ "normalized.mean_flux": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.mean_flux"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.mean_flux"
+  }
+ ],
+ "normalized.plot": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  }
+ ],
+ "normalized.std_flux": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.std_flux"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.std_flux"
+  }
+ ],
+ "original": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  }
+ ],
+ "original.mean_flux": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.mean_flux"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.mean_flux"
+  }
+ ],
+ "original.normalize": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.normalize"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.normalize"
+  }
+ ],
+ "original.plot": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  }
+ ],
+ "original.std_flux": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.std_flux"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.std_flux"
+  }
+ ],
+ "periodic_lc": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve"
+  }
+ ],
+ "periodic_lc.plot": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.models",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves",
+   "module_short": "hypothesis_lightcurves",
+   "name": "Lightcurve.plot"
+  }
+ ],
+ "periodic_lightcurves": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "hypothesis_lightcurves.generators",
+   "module_short": "hypothesis_lightcurves",
+   "name": "periodic_lightcurves"
+  }
+ ],
+ "plt.show": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "show"
+  }
+ ],
+ "plt.subplots": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "subplots"
+  }
+ ],
+ "plt.tight_layout": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.pyplot",
+   "module_short": "matplotlib.pyplot",
+   "name": "tight_layout"
+  }
+ ]
+}

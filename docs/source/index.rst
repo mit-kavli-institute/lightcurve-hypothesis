@@ -10,6 +10,7 @@ hypothesis-lightcurves
 
    installation
    quickstart
+   gallery
    examples
    api
 

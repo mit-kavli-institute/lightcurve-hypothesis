@@ -79,12 +79,17 @@ def dev(session):
 @nox.session(python="3.11")
 def docs(session):
     """Build documentation with Sphinx."""
-    session.install("-e", ".[docs]")
+    session.install("-e", ".[docs,viz]")
     session.chdir("docs")
 
     # Clean previous builds
     session.run("rm", "-rf", "build", external=True)
     session.run("rm", "-rf", "source/_autosummary", external=True)
+    session.run("rm", "-rf", "source/_static/gallery", external=True)
+
+    # Generate gallery examples
+    print("📸 Generating gallery examples...")
+    session.run("python", "scripts/generate_gallery.py")
 
     # Build HTML documentation
     session.run("sphinx-build", "-b", "html", "source", "build/html")
