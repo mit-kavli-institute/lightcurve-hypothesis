@@ -51,13 +51,13 @@ def quality(session):
     """Run all quality checks."""
     session.install("-e", ".[dev]")
     session.install("black", "ruff", "mypy")
-    
+
     # Format check
     session.run("black", "--check", "src", "tests")
-    
+
     # Lint
     session.run("ruff", "check", "src", "tests")
-    
+
     # Type check
     session.run("mypy", "src")
 
@@ -73,3 +73,21 @@ def dev(session):
     print("Run 'nox -s tests' to run tests only")
     print("Run 'nox -s coverage' to run tests with coverage")
     print("Run 'nox -s quality' to run all quality checks")
+    print("Run 'nox -s docs' to build documentation")
+
+
+@nox.session(python="3.11")
+def docs(session):
+    """Build documentation with Sphinx."""
+    session.install("-e", ".[docs]")
+    session.chdir("docs")
+
+    # Clean previous builds
+    session.run("rm", "-rf", "build", external=True)
+    session.run("rm", "-rf", "source/_autosummary", external=True)
+
+    # Build HTML documentation
+    session.run("sphinx-build", "-W", "-b", "html", "source", "build/html")
+
+    print("\n✅ Documentation built successfully!")
+    print(f"📖 View at: file://{session.invoked_from}/docs/build/html/index.html")
