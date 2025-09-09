@@ -3,6 +3,7 @@
 import numpy as np
 from hypothesis import given, settings
 from hypothesis import strategies as st
+
 from hypothesis_lightcurves.generators import baseline_lightcurves
 from hypothesis_lightcurves.models import Lightcurve
 
