@@ -24,14 +24,13 @@ Periodic Lightcurve Examples
 This example demonstrates the generation and visualization of periodic lightcurves,
 which are useful for testing algorithms that detect periodic signals in astronomical data.
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-21
+.. GENERATED FROM PYTHON SOURCE LINES 8-20
 
 .. code-block:: Python
 
 
     import matplotlib.pyplot as plt
     import numpy as np
-
     from hypothesis_lightcurves.generators import periodic_lightcurves
     from hypothesis_lightcurves.utils import calculate_periodogram
     from hypothesis_lightcurves.visualization import (
@@ -48,13 +47,13 @@ which are useful for testing algorithms that detect periodic signals in astronom
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 22-25
+.. GENERATED FROM PYTHON SOURCE LINES 21-24
 
 Simple periodic lightcurve
 ---------------------------
 Generate a periodic lightcurve with known period and amplitude.
 
-.. GENERATED FROM PYTHON SOURCE LINES 25-40
+.. GENERATED FROM PYTHON SOURCE LINES 24-39
 
 .. code-block:: Python
 
@@ -65,11 +64,11 @@ Generate a periodic lightcurve with known period and amplitude.
         max_period=2.5,  # Fixed period for demonstration
         min_amplitude=0.1,
         max_amplitude=0.2,
-        with_noise=False
+        with_noise=False,
     ).example()
 
     fig, ax = plt.subplots(figsize=(12, 6))
-    plot_with_annotations(lc, ax=ax, color='darkblue', marker='', linewidth=2)
+    plot_with_annotations(lc, ax=ax, color="darkblue", marker="", linewidth=2)
     ax.set_title(f"Periodic Lightcurve (P={lc.metadata['period']:.2f})", fontsize=14)
     plt.show()
 
@@ -86,19 +85,19 @@ Generate a periodic lightcurve with known period and amplitude.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:33: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_period=2.5, max_period=2.5, min_amplitude=0.1, max_amplitude=0.2, with_noise=False))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:32: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_period=2.5, max_period=2.5, min_amplitude=0.1, max_amplitude=0.2, with_noise=False))
       ).example()
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 41-44
+.. GENERATED FROM PYTHON SOURCE LINES 40-43
 
 Effect of noise on periodic signals
 ------------------------------------
 Compare clean and noisy periodic signals.
 
-.. GENERATED FROM PYTHON SOURCE LINES 44-80
+.. GENERATED FROM PYTHON SOURCE LINES 43-87
 
 .. code-block:: Python
 
@@ -113,11 +112,12 @@ Compare clean and noisy periodic signals.
         max_amplitude=0.15,
         with_noise=False,
         min_points=200,
-        max_points=200
+        max_points=200,
     ).example()
 
-    plot_lightcurve(lc_clean, ax=axes[0], title="Clean Periodic Signal",
-                    color='navy', marker='', linewidth=2)
+    plot_lightcurve(
+        lc_clean, ax=axes[0], title="Clean Periodic Signal", color="navy", marker="", linewidth=2
+    )
 
     # Noisy signal with same parameters
     np.random.seed(42)  # Same seed for consistent period/amplitude
@@ -128,11 +128,18 @@ Compare clean and noisy periodic signals.
         max_amplitude=0.15,
         with_noise=True,
         min_points=200,
-        max_points=200
+        max_points=200,
     ).example()
 
-    plot_lightcurve(lc_noisy, ax=axes[1], title="Noisy Periodic Signal",
-                    color='darkred', marker='.', markersize=3, linestyle='')
+    plot_lightcurve(
+        lc_noisy,
+        ax=axes[1],
+        title="Noisy Periodic Signal",
+        color="darkred",
+        marker=".",
+        markersize=3,
+        linestyle="",
+    )
 
     plt.suptitle("Impact of Noise on Periodic Signals", fontsize=16, y=1.01)
     plt.tight_layout()
@@ -151,7 +158,7 @@ Compare clean and noisy periodic signals.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:56: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=200, max_points=200, min_period=3.0, max_period=3.0, min_amplitude=0.15, max_amplitude=0.15, with_noise=False))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:55: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=200, max_points=200, min_period=3.0, max_period=3.0, min_amplitude=0.15, max_amplitude=0.15, with_noise=False))
       ).example()
     /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:71: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=200, max_points=200, min_period=3.0, max_period=3.0, min_amplitude=0.15, max_amplitude=0.15))
       ).example()
@@ -159,13 +166,13 @@ Compare clean and noisy periodic signals.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 81-84
+.. GENERATED FROM PYTHON SOURCE LINES 88-91
 
 Different periods and amplitudes
 ---------------------------------
 Showcase various combinations of periods and amplitudes.
 
-.. GENERATED FROM PYTHON SOURCE LINES 84-118
+.. GENERATED FROM PYTHON SOURCE LINES 91-124
 
 .. code-block:: Python
 
@@ -192,11 +199,10 @@ Showcase various combinations of periods and amplitudes.
             max_amplitude=amplitude,
             with_noise=False,
             min_points=300,
-            max_points=300
+            max_points=300,
         ).example()
 
-        plot_lightcurve(lc, ax=axes[row, col], title=title,
-                        color=f'C{idx}', marker='', linewidth=1.5)
+        plot_lightcurve(lc, ax=axes[row, col], title=title, color=f"C{idx}", marker="", linewidth=1.5)
         axes[row, col].set_ylim(lc.mean_flux - amplitude * 2, lc.mean_flux + amplitude * 2)
 
     plt.suptitle("Periodic Signals with Various Parameters", fontsize=16, y=1.01)
@@ -216,29 +222,29 @@ Showcase various combinations of periods and amplitudes.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:108: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=0.5, max_period=0.5, min_amplitude=0.05, max_amplitude=0.05, with_noise=False))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:115: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=0.5, max_period=0.5, min_amplitude=0.05, max_amplitude=0.05, with_noise=False))
       ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:108: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=0.5, max_period=0.5, min_amplitude=0.3, max_amplitude=0.3, with_noise=False))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:115: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=0.5, max_period=0.5, min_amplitude=0.3, max_amplitude=0.3, with_noise=False))
       ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:108: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=2.0, max_period=2.0, min_amplitude=0.05, max_amplitude=0.05, with_noise=False))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:115: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=2.0, max_period=2.0, min_amplitude=0.05, max_amplitude=0.05, with_noise=False))
       ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:108: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=2.0, max_period=2.0, min_amplitude=0.3, max_amplitude=0.3, with_noise=False))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:115: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=2.0, max_period=2.0, min_amplitude=0.3, max_amplitude=0.3, with_noise=False))
       ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:108: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=5.0, max_period=5.0, min_amplitude=0.05, max_amplitude=0.05, with_noise=False))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:115: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=5.0, max_period=5.0, min_amplitude=0.05, max_amplitude=0.05, with_noise=False))
       ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:108: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=5.0, max_period=5.0, min_amplitude=0.3, max_amplitude=0.3, with_noise=False))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:115: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=5.0, max_period=5.0, min_amplitude=0.3, max_amplitude=0.3, with_noise=False))
       ).example()
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 119-122
+.. GENERATED FROM PYTHON SOURCE LINES 125-128
 
 Phase-folded lightcurve
 ------------------------
 Demonstrate phase-folding to reveal the periodic pattern.
 
-.. GENERATED FROM PYTHON SOURCE LINES 122-147
+.. GENERATED FROM PYTHON SOURCE LINES 128-160
 
 .. code-block:: Python
 
@@ -250,17 +256,24 @@ Demonstrate phase-folding to reveal the periodic pattern.
         max_amplitude=0.2,
         with_noise=True,
         min_points=500,
-        max_points=500
+        max_points=500,
     ).example()
 
     fig, axes = plt.subplots(1, 2, figsize=(14, 6))
 
     # Original lightcurve
-    plot_lightcurve(lc_fold, ax=axes[0], title="Original Lightcurve",
-                    color='darkgreen', marker='.', markersize=2, linestyle='')
+    plot_lightcurve(
+        lc_fold,
+        ax=axes[0],
+        title="Original Lightcurve",
+        color="darkgreen",
+        marker=".",
+        markersize=2,
+        linestyle="",
+    )
 
     # Phase-folded
-    true_period = lc_fold.metadata['period']
+    true_period = lc_fold.metadata["period"]
     plot_phase_folded(lc_fold, period=true_period, ax=axes[1])
     axes[1].set_title(f"Phase-folded at True Period (P={true_period:.3f})")
 
@@ -280,19 +293,19 @@ Demonstrate phase-folding to reveal the periodic pattern.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:131: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=500, max_points=500, min_period=1.7, max_period=1.7, min_amplitude=0.2, max_amplitude=0.2))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:137: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=500, max_points=500, min_period=1.7, max_period=1.7, min_amplitude=0.2, max_amplitude=0.2))
       ).example()
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 148-151
+.. GENERATED FROM PYTHON SOURCE LINES 161-164
 
 Periodogram analysis
 ---------------------
 Show how periodogram can recover the true period.
 
-.. GENERATED FROM PYTHON SOURCE LINES 151-189
+.. GENERATED FROM PYTHON SOURCE LINES 164-210
 
 .. code-block:: Python
 
@@ -304,7 +317,7 @@ Show how periodogram can recover the true period.
         max_amplitude=0.15,
         with_noise=True,
         min_points=200,
-        max_points=200
+        max_points=200,
     ).example()
 
     # Calculate periodogram
@@ -314,20 +327,28 @@ Show how periodogram can recover the true period.
     fig, axes = plt.subplots(2, 1, figsize=(12, 10))
 
     # Lightcurve
-    plot_lightcurve(lc_periodogram, ax=axes[0], title="Periodic Lightcurve for Analysis",
-                    color='purple', marker='.', markersize=3, linestyle='-', linewidth=0.5)
+    plot_lightcurve(
+        lc_periodogram,
+        ax=axes[0],
+        title="Periodic Lightcurve for Analysis",
+        color="purple",
+        marker=".",
+        markersize=3,
+        linestyle="-",
+        linewidth=0.5,
+    )
 
     # Periodogram
-    axes[1].plot(periods, power, 'b-', linewidth=1.5)
-    true_period = lc_periodogram.metadata['period']
-    axes[1].axvline(true_period, color='red', linestyle='--',
-                    label=f'True Period = {true_period:.3f}')
+    axes[1].plot(periods, power, "b-", linewidth=1.5)
+    true_period = lc_periodogram.metadata["period"]
+    axes[1].axvline(true_period, color="red", linestyle="--", label=f"True Period = {true_period:.3f}")
     detected_period = periods[np.argmax(power)]
-    axes[1].axvline(detected_period, color='green', linestyle='--',
-                    label=f'Detected Period = {detected_period:.3f}')
-    axes[1].set_xlabel('Period', fontsize=12)
-    axes[1].set_ylabel('Power', fontsize=12)
-    axes[1].set_title('Periodogram Analysis', fontsize=14)
+    axes[1].axvline(
+        detected_period, color="green", linestyle="--", label=f"Detected Period = {detected_period:.3f}"
+    )
+    axes[1].set_xlabel("Period", fontsize=12)
+    axes[1].set_ylabel("Power", fontsize=12)
+    axes[1].set_title("Periodogram Analysis", fontsize=14)
     axes[1].legend()
     axes[1].grid(True, alpha=0.3)
 
@@ -347,19 +368,19 @@ Show how periodogram can recover the true period.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:160: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=200, max_points=200, min_period=2.3, max_period=2.3, min_amplitude=0.15, max_amplitude=0.15))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:173: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=200, max_points=200, min_period=2.3, max_period=2.3, min_amplitude=0.15, max_amplitude=0.15))
       ).example()
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 190-193
+.. GENERATED FROM PYTHON SOURCE LINES 211-214
 
 Gallery of periodic lightcurves
 --------------------------------
 Show diversity of periodic lightcurves that can be generated.
 
-.. GENERATED FROM PYTHON SOURCE LINES 193-206
+.. GENERATED FROM PYTHON SOURCE LINES 214-227
 
 .. code-block:: Python
 
@@ -372,7 +393,7 @@ Show diversity of periodic lightcurves that can be generated.
         seed=456,
         min_period=0.5,
         max_period=5.0,
-        with_noise=True
+        with_noise=True,
     )
     plt.show()
 
@@ -395,13 +416,13 @@ Show diversity of periodic lightcurves that can be generated.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 207-210
+.. GENERATED FROM PYTHON SOURCE LINES 228-231
 
 Multi-period comparison
 ------------------------
 Compare lightcurves with different periods side by side.
 
-.. GENERATED FROM PYTHON SOURCE LINES 210-232
+.. GENERATED FROM PYTHON SOURCE LINES 231-254
 
 .. code-block:: Python
 
@@ -417,17 +438,18 @@ Compare lightcurves with different periods side by side.
             max_amplitude=0.1,
             with_noise=False,
             min_points=500,
-            max_points=500
+            max_points=500,
         ).example()
 
-        plot_lightcurve(lc, ax=axes[i], color=f'C{i}', marker='', linewidth=1.5)
-        axes[i].set_title(f'Period = {period:.1f}', fontsize=12)
-        axes[i].set_ylabel('Flux', fontsize=10)
+        plot_lightcurve(lc, ax=axes[i], color=f"C{i}", marker="", linewidth=1.5)
+        axes[i].set_title(f"Period = {period:.1f}", fontsize=12)
+        axes[i].set_ylabel("Flux", fontsize=10)
 
-    axes[-1].set_xlabel('Time', fontsize=12)
-    plt.suptitle('Comparison of Different Periods', fontsize=16, y=1.01)
+    axes[-1].set_xlabel("Time", fontsize=12)
+    plt.suptitle("Comparison of Different Periods", fontsize=16, y=1.01)
     plt.tight_layout()
     plt.show()
+
 
 
 .. image-sg:: /auto_examples/images/sphx_glr_plot_periodic_signals_007.png
@@ -440,13 +462,13 @@ Compare lightcurves with different periods side by side.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:223: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=500, max_points=500, min_period=0.5, max_period=0.5, min_amplitude=0.1, max_amplitude=0.1, with_noise=False))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:244: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=500, max_points=500, min_period=0.5, max_period=0.5, min_amplitude=0.1, max_amplitude=0.1, with_noise=False))
       ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:223: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=500, max_points=500, min_period=1.0, max_period=1.0, min_amplitude=0.1, max_amplitude=0.1, with_noise=False))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:244: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=500, max_points=500, min_period=1.0, max_period=1.0, min_amplitude=0.1, max_amplitude=0.1, with_noise=False))
       ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:223: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=500, max_points=500, min_period=2.0, max_period=2.0, min_amplitude=0.1, max_amplitude=0.1, with_noise=False))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:244: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=500, max_points=500, min_period=2.0, max_period=2.0, min_amplitude=0.1, max_amplitude=0.1, with_noise=False))
       ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:223: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=500, max_points=500, min_period=4.0, max_period=4.0, min_amplitude=0.1, max_amplitude=0.1, with_noise=False))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_periodic_signals.py:244: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=500, max_points=500, min_period=4.0, max_period=4.0, min_amplitude=0.1, max_amplitude=0.1, with_noise=False))
       ).example()
 
 
@@ -455,7 +477,7 @@ Compare lightcurves with different periods side by side.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 1.288 seconds)
+   **Total running time of the script:** (0 minutes 1.251 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_periodic_signals.py:

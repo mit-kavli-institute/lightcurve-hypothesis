@@ -24,18 +24,16 @@ Transient Lightcurve Examples
 This example demonstrates the generation and visualization of transient lightcurves,
 which model events like supernovae, novae, and stellar flares.
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-20
+.. GENERATED FROM PYTHON SOURCE LINES 8-18
 
 .. code-block:: Python
 
 
     import matplotlib.pyplot as plt
     import numpy as np
-
     from hypothesis_lightcurves.generators import transient_lightcurves
     from hypothesis_lightcurves.visualization import (
         create_gallery_plot,
-        plot_comparison,
         plot_lightcurve,
         plot_with_annotations,
     )
@@ -47,13 +45,13 @@ which model events like supernovae, novae, and stellar flares.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 21-24
+.. GENERATED FROM PYTHON SOURCE LINES 19-22
 
 Basic transient event
 ----------------------
 Generate and visualize a basic transient lightcurve.
 
-.. GENERATED FROM PYTHON SOURCE LINES 24-39
+.. GENERATED FROM PYTHON SOURCE LINES 22-37
 
 .. code-block:: Python
 
@@ -62,12 +60,12 @@ Generate and visualize a basic transient lightcurve.
     lc = transient_lightcurves().example()
 
     fig, ax = plt.subplots(figsize=(12, 6))
-    plot_with_annotations(lc, ax=ax, color='darkred', marker='.', markersize=3)
+    plot_with_annotations(lc, ax=ax, color="darkred", marker=".", markersize=3)
     ax.set_title("Transient Event Example", fontsize=14)
 
     # Mark the peak
     peak_idx = np.argmax(lc.flux)
-    ax.plot(lc.time[peak_idx], lc.flux[peak_idx], 'r*', markersize=15, label='Peak')
+    ax.plot(lc.time[peak_idx], lc.flux[peak_idx], "r*", markersize=15, label="Peak")
     ax.legend()
 
     plt.show()
@@ -85,19 +83,19 @@ Generate and visualize a basic transient lightcurve.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:26: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves())
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:24: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves())
       lc = transient_lightcurves().example()
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 40-43
+.. GENERATED FROM PYTHON SOURCE LINES 38-41
 
 Different rise and decay times
 -------------------------------
 Compare transients with different temporal characteristics.
 
-.. GENERATED FROM PYTHON SOURCE LINES 43-98
+.. GENERATED FROM PYTHON SOURCE LINES 41-120
 
 .. code-block:: Python
 
@@ -111,10 +109,16 @@ Compare transients with different temporal characteristics.
         min_decay_time=1.0,
         max_decay_time=1.0,
         min_peak_time=10,
-        max_peak_time=10
+        max_peak_time=10,
     ).example()
-    plot_lightcurve(lc_flare, ax=axes[0, 0], title="Flare-like (Fast rise, Fast decay)",
-                    color='orange', marker='.', markersize=2)
+    plot_lightcurve(
+        lc_flare,
+        ax=axes[0, 0],
+        title="Flare-like (Fast rise, Fast decay)",
+        color="orange",
+        marker=".",
+        markersize=2,
+    )
 
     # Fast rise, slow decay (like a Type Ia supernova)
     lc_sn_ia = transient_lightcurves(
@@ -123,10 +127,16 @@ Compare transients with different temporal characteristics.
         min_decay_time=15.0,
         max_decay_time=15.0,
         min_peak_time=20,
-        max_peak_time=20
+        max_peak_time=20,
     ).example()
-    plot_lightcurve(lc_sn_ia, ax=axes[0, 1], title="SN Ia-like (Fast rise, Slow decay)",
-                    color='blue', marker='.', markersize=2)
+    plot_lightcurve(
+        lc_sn_ia,
+        ax=axes[0, 1],
+        title="SN Ia-like (Fast rise, Slow decay)",
+        color="blue",
+        marker=".",
+        markersize=2,
+    )
 
     # Slow rise, slow decay (like a Type II supernova)
     lc_sn_ii = transient_lightcurves(
@@ -135,10 +145,16 @@ Compare transients with different temporal characteristics.
         min_decay_time=20.0,
         max_decay_time=20.0,
         min_peak_time=25,
-        max_peak_time=25
+        max_peak_time=25,
     ).example()
-    plot_lightcurve(lc_sn_ii, ax=axes[1, 0], title="SN II-like (Slow rise, Slow decay)",
-                    color='green', marker='.', markersize=2)
+    plot_lightcurve(
+        lc_sn_ii,
+        ax=axes[1, 0],
+        title="SN II-like (Slow rise, Slow decay)",
+        color="green",
+        marker=".",
+        markersize=2,
+    )
 
     # Slow rise, fast decay (unusual)
     lc_unusual = transient_lightcurves(
@@ -147,10 +163,16 @@ Compare transients with different temporal characteristics.
         min_decay_time=2.0,
         max_decay_time=2.0,
         min_peak_time=20,
-        max_peak_time=20
+        max_peak_time=20,
     ).example()
-    plot_lightcurve(lc_unusual, ax=axes[1, 1], title="Unusual (Slow rise, Fast decay)",
-                    color='purple', marker='.', markersize=2)
+    plot_lightcurve(
+        lc_unusual,
+        ax=axes[1, 1],
+        title="Unusual (Slow rise, Fast decay)",
+        color="purple",
+        marker=".",
+        markersize=2,
+    )
 
     plt.suptitle("Transient Events with Different Timescales", fontsize=16, y=1.01)
     plt.tight_layout()
@@ -169,25 +191,25 @@ Compare transients with different temporal characteristics.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:54: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_peak_time=10, max_peak_time=10, min_rise_time=0.5, max_rise_time=0.5, min_decay_time=1.0, max_decay_time=1.0))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:52: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_peak_time=10, max_peak_time=10, min_rise_time=0.5, max_rise_time=0.5, min_decay_time=1.0, max_decay_time=1.0))
       ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:66: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_peak_time=20, max_peak_time=20, min_rise_time=2.0, max_rise_time=2.0, min_decay_time=15.0, max_decay_time=15.0))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:70: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_peak_time=20, max_peak_time=20, min_rise_time=2.0, max_rise_time=2.0, min_decay_time=15.0, max_decay_time=15.0))
       ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:78: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_peak_time=25, max_peak_time=25, min_rise_time=5.0, max_rise_time=5.0, min_decay_time=20.0, max_decay_time=20.0))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:88: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_peak_time=25, max_peak_time=25, min_rise_time=5.0, max_rise_time=5.0, min_decay_time=20.0, max_decay_time=20.0))
       ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:90: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_peak_time=20, max_peak_time=20, min_rise_time=8.0, max_rise_time=8.0, min_decay_time=2.0, max_decay_time=2.0))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:106: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_peak_time=20, max_peak_time=20, min_rise_time=8.0, max_rise_time=8.0, min_decay_time=2.0, max_decay_time=2.0))
       ).example()
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 99-102
+.. GENERATED FROM PYTHON SOURCE LINES 121-124
 
 Peak time variation
 -------------------
 Show how peak time affects the lightcurve.
 
-.. GENERATED FROM PYTHON SOURCE LINES 102-126
+.. GENERATED FROM PYTHON SOURCE LINES 124-148
 
 .. code-block:: Python
 
@@ -204,14 +226,14 @@ Show how peak time affects the lightcurve.
             min_decay_time=10.0,
             max_decay_time=10.0,
             min_points=200,
-            max_points=200
+            max_points=200,
         ).example()
 
-        plot_lightcurve(lc, ax=axes[i], color=f'C{i}', marker='', linewidth=2)
-        axes[i].set_title(f'Peak at t={peak_time}', fontsize=12)
-        axes[i].axvline(peak_time, color='red', linestyle='--', alpha=0.5)
+        plot_lightcurve(lc, ax=axes[i], color=f"C{i}", marker="", linewidth=2)
+        axes[i].set_title(f"Peak at t={peak_time}", fontsize=12)
+        axes[i].axvline(peak_time, color="red", linestyle="--", alpha=0.5)
 
-    plt.suptitle('Transients with Different Peak Times', fontsize=16, y=1.05)
+    plt.suptitle("Transients with Different Peak Times", fontsize=16, y=1.05)
     plt.tight_layout()
     plt.show()
 
@@ -228,25 +250,25 @@ Show how peak time affects the lightcurve.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:116: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_points=200, max_points=200, min_peak_time=10, max_peak_time=10, min_rise_time=3.0, max_rise_time=3.0, min_decay_time=10.0, max_decay_time=10.0))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:138: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_points=200, max_points=200, min_peak_time=10, max_peak_time=10, min_rise_time=3.0, max_rise_time=3.0, min_decay_time=10.0, max_decay_time=10.0))
       ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:116: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_points=200, max_points=200, min_peak_time=25, max_peak_time=25, min_rise_time=3.0, max_rise_time=3.0, min_decay_time=10.0, max_decay_time=10.0))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:138: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_points=200, max_points=200, min_peak_time=25, max_peak_time=25, min_rise_time=3.0, max_rise_time=3.0, min_decay_time=10.0, max_decay_time=10.0))
       ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:116: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_points=200, max_points=200, min_peak_time=40, max_peak_time=40, min_rise_time=3.0, max_rise_time=3.0, min_decay_time=10.0, max_decay_time=10.0))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:138: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_points=200, max_points=200, min_peak_time=40, max_peak_time=40, min_rise_time=3.0, max_rise_time=3.0, min_decay_time=10.0, max_decay_time=10.0))
       ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:116: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_points=200, max_points=200, min_peak_time=55, max_peak_time=55, min_rise_time=3.0, max_rise_time=3.0, min_decay_time=10.0, max_decay_time=10.0))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:138: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_points=200, max_points=200, min_peak_time=55, max_peak_time=55, min_rise_time=3.0, max_rise_time=3.0, min_decay_time=10.0, max_decay_time=10.0))
       ).example()
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 127-130
+.. GENERATED FROM PYTHON SOURCE LINES 149-152
 
 Amplitude variations
 --------------------
 Compare transients with different peak amplitudes.
 
-.. GENERATED FROM PYTHON SOURCE LINES 130-163
+.. GENERATED FROM PYTHON SOURCE LINES 152-186
 
 .. code-block:: Python
 
@@ -254,9 +276,9 @@ Compare transients with different peak amplitudes.
     fig, ax = plt.subplots(figsize=(12, 7))
 
     amplitudes = [100, 500, 1000, 5000]
-    colors = ['blue', 'green', 'orange', 'red']
+    colors = ["blue", "green", "orange", "red"]
 
-    for amp, color in zip(amplitudes, colors):
+    for amp, color in zip(amplitudes, colors, strict=False):
         lc = transient_lightcurves(
             min_peak_time=25,
             max_peak_time=25,
@@ -265,7 +287,7 @@ Compare transients with different peak amplitudes.
             min_decay_time=10.0,
             max_decay_time=10.0,
             min_points=150,
-            max_points=150
+            max_points=150,
         ).example()
 
         # Scale the flux to desired amplitude
@@ -273,12 +295,13 @@ Compare transients with different peak amplitudes.
         scale_factor = amp / (np.max(lc.flux) - baseline)
         scaled_flux = baseline + (lc.flux - baseline) * scale_factor
 
-        ax.plot(lc.time, scaled_flux, color=color, linewidth=2,
-                label=f'Peak amplitude ≈ {amp}', alpha=0.7)
+        ax.plot(
+            lc.time, scaled_flux, color=color, linewidth=2, label=f"Peak amplitude ≈ {amp}", alpha=0.7
+        )
 
-    ax.set_xlabel('Time', fontsize=12)
-    ax.set_ylabel('Flux', fontsize=12)
-    ax.set_title('Transients with Different Amplitudes', fontsize=14)
+    ax.set_xlabel("Time", fontsize=12)
+    ax.set_ylabel("Flux", fontsize=12)
+    ax.set_title("Transients with Different Amplitudes", fontsize=14)
     ax.legend()
     ax.grid(True, alpha=0.3)
     plt.show()
@@ -296,19 +319,19 @@ Compare transients with different peak amplitudes.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:146: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_points=150, max_points=150, min_peak_time=25, max_peak_time=25, min_rise_time=3.0, max_rise_time=3.0, min_decay_time=10.0, max_decay_time=10.0))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:168: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_points=150, max_points=150, min_peak_time=25, max_peak_time=25, min_rise_time=3.0, max_rise_time=3.0, min_decay_time=10.0, max_decay_time=10.0))
       ).example()
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 164-167
+.. GENERATED FROM PYTHON SOURCE LINES 187-190
 
 Evolution of a transient
 -------------------------
 Show the characteristic phases of a transient event.
 
-.. GENERATED FROM PYTHON SOURCE LINES 167-215
+.. GENERATED FROM PYTHON SOURCE LINES 190-238
 
 .. code-block:: Python
 
@@ -321,41 +344,41 @@ Show the characteristic phases of a transient event.
         min_decay_time=15.0,
         max_decay_time=15.0,
         min_points=300,
-        max_points=300
+        max_points=300,
     ).example()
 
     fig, ax = plt.subplots(figsize=(14, 7))
 
     # Plot the full lightcurve
-    plot_lightcurve(lc_evolution, ax=ax, color='black', marker='', linewidth=2)
+    plot_lightcurve(lc_evolution, ax=ax, color="black", marker="", linewidth=2)
 
     # Highlight different phases
-    peak_time = lc_evolution.metadata['peak_time']
-    rise_time = lc_evolution.metadata['rise_time']
-    decay_time = lc_evolution.metadata['decay_time']
+    peak_time = lc_evolution.metadata["peak_time"]
+    rise_time = lc_evolution.metadata["rise_time"]
+    decay_time = lc_evolution.metadata["decay_time"]
 
     # Pre-explosion
-    ax.axvspan(0, peak_time - 3*rise_time, alpha=0.2, color='gray', label='Pre-explosion')
+    ax.axvspan(0, peak_time - 3 * rise_time, alpha=0.2, color="gray", label="Pre-explosion")
 
     # Rise phase
-    ax.axvspan(peak_time - 3*rise_time, peak_time, alpha=0.2, color='blue', label='Rise phase')
+    ax.axvspan(peak_time - 3 * rise_time, peak_time, alpha=0.2, color="blue", label="Rise phase")
 
     # Peak
     peak_idx = np.argmax(lc_evolution.flux)
-    ax.plot(lc_evolution.time[peak_idx], lc_evolution.flux[peak_idx],
-            'r*', markersize=20, label='Peak')
+    ax.plot(lc_evolution.time[peak_idx], lc_evolution.flux[peak_idx], "r*", markersize=20, label="Peak")
 
     # Decay phase
-    ax.axvspan(peak_time, peak_time + 3*decay_time, alpha=0.2, color='orange', label='Decay phase')
+    ax.axvspan(peak_time, peak_time + 3 * decay_time, alpha=0.2, color="orange", label="Decay phase")
 
     # Late time
-    ax.axvspan(peak_time + 3*decay_time, lc_evolution.time[-1],
-               alpha=0.2, color='purple', label='Late time')
+    ax.axvspan(
+        peak_time + 3 * decay_time, lc_evolution.time[-1], alpha=0.2, color="purple", label="Late time"
+    )
 
-    ax.set_xlabel('Time', fontsize=12)
-    ax.set_ylabel('Flux', fontsize=12)
-    ax.set_title('Phases of a Transient Event', fontsize=14)
-    ax.legend(loc='upper right')
+    ax.set_xlabel("Time", fontsize=12)
+    ax.set_ylabel("Flux", fontsize=12)
+    ax.set_title("Phases of a Transient Event", fontsize=14)
+    ax.legend(loc="upper right")
     ax.grid(True, alpha=0.3)
 
     plt.show()
@@ -373,19 +396,19 @@ Show the characteristic phases of a transient event.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:177: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_points=300, max_points=300, min_peak_time=30, max_peak_time=30, min_rise_time=5.0, max_rise_time=5.0, min_decay_time=15.0, max_decay_time=15.0))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:200: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_points=300, max_points=300, min_peak_time=30, max_peak_time=30, min_rise_time=5.0, max_rise_time=5.0, min_decay_time=15.0, max_decay_time=15.0))
       ).example()
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 216-219
+.. GENERATED FROM PYTHON SOURCE LINES 239-242
 
 Gallery of transient events
 ----------------------------
 Showcase the diversity of transient lightcurves.
 
-.. GENERATED FROM PYTHON SOURCE LINES 219-229
+.. GENERATED FROM PYTHON SOURCE LINES 242-252
 
 .. code-block:: Python
 
@@ -395,7 +418,7 @@ Showcase the diversity of transient lightcurves.
         generator_func=transient_lightcurves,
         title="Gallery of Transient Events",
         figsize=(15, 10),
-        seed=789
+        seed=789,
     )
     plt.show()
 
@@ -418,13 +441,13 @@ Showcase the diversity of transient lightcurves.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 230-233
+.. GENERATED FROM PYTHON SOURCE LINES 253-256
 
 Comparison with noise
 ---------------------
 Show how noise affects transient detection.
 
-.. GENERATED FROM PYTHON SOURCE LINES 233-273
+.. GENERATED FROM PYTHON SOURCE LINES 256-310
 
 .. code-block:: Python
 
@@ -441,7 +464,7 @@ Show how noise affects transient detection.
         min_decay_time=12.0,
         max_decay_time=12.0,
         min_points=200,
-        max_points=200
+        max_points=200,
     )
 
     # Clean transient
@@ -450,25 +473,39 @@ Show how noise affects transient detection.
     lc_clean.flux = lc_clean.flux - np.random.normal(0, lc_clean.flux_err[0], len(lc_clean.flux))
     lc_clean.flux_err = None
 
-    plot_lightcurve(lc_clean, ax=axes[0], title="Clean Transient",
-                    color='navy', marker='', linewidth=2)
+    plot_lightcurve(lc_clean, ax=axes[0], title="Clean Transient", color="navy", marker="", linewidth=2)
 
     # Low noise
     lc_low_noise = transient_lightcurves(**base_params).example()
-    plot_lightcurve(lc_low_noise, ax=axes[1], title="Low Noise",
-                    color='darkgreen', marker='.', markersize=2, linestyle='')
+    plot_lightcurve(
+        lc_low_noise,
+        ax=axes[1],
+        title="Low Noise",
+        color="darkgreen",
+        marker=".",
+        markersize=2,
+        linestyle="",
+    )
 
     # High noise (add extra noise)
     lc_high_noise = transient_lightcurves(**base_params).example()
     extra_noise = np.random.normal(0, np.std(lc_high_noise.flux) * 0.2, len(lc_high_noise.flux))
     lc_high_noise.flux += extra_noise
 
-    plot_lightcurve(lc_high_noise, ax=axes[2], title="High Noise",
-                    color='darkred', marker='.', markersize=2, linestyle='')
+    plot_lightcurve(
+        lc_high_noise,
+        ax=axes[2],
+        title="High Noise",
+        color="darkred",
+        marker=".",
+        markersize=2,
+        linestyle="",
+    )
 
-    plt.suptitle('Impact of Noise on Transient Detection', fontsize=16, y=1.01)
+    plt.suptitle("Impact of Noise on Transient Detection", fontsize=16, y=1.01)
     plt.tight_layout()
     plt.show()
+
 
 
 .. image-sg:: /auto_examples/images/sphx_glr_plot_transients_007.png
@@ -481,11 +518,11 @@ Show how noise affects transient detection.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:250: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_points=200, max_points=200, min_peak_time=25, max_peak_time=25, min_rise_time=3.0, max_rise_time=3.0, min_decay_time=12.0, max_decay_time=12.0))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:273: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_points=200, max_points=200, min_peak_time=25, max_peak_time=25, min_rise_time=3.0, max_rise_time=3.0, min_decay_time=12.0, max_decay_time=12.0))
       lc_clean = transient_lightcurves(**base_params).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:259: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_points=200, max_points=200, min_peak_time=25, max_peak_time=25, min_rise_time=3.0, max_rise_time=3.0, min_decay_time=12.0, max_decay_time=12.0))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:281: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_points=200, max_points=200, min_peak_time=25, max_peak_time=25, min_rise_time=3.0, max_rise_time=3.0, min_decay_time=12.0, max_decay_time=12.0))
       lc_low_noise = transient_lightcurves(**base_params).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:264: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_points=200, max_points=200, min_peak_time=25, max_peak_time=25, min_rise_time=3.0, max_rise_time=3.0, min_decay_time=12.0, max_decay_time=12.0))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_transients.py:293: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_points=200, max_points=200, min_peak_time=25, max_peak_time=25, min_rise_time=3.0, max_rise_time=3.0, min_decay_time=12.0, max_decay_time=12.0))
       lc_high_noise = transient_lightcurves(**base_params).example()
 
 
@@ -494,7 +531,7 @@ Show how noise affects transient detection.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 1.108 seconds)
+   **Total running time of the script:** (0 minutes 1.131 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_transients.py:

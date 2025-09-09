@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**00:20.709** total execution time for 5 files **from all galleries**:
+**00:21.970** total execution time for 5 files **from all galleries**:
 
 .. container::
 
@@ -33,17 +33,17 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_auto_examples_plot_ensemble_statistics.py` (``examples/plot_ensemble_statistics.py``)
-     - 00:14.682
+     - 00:15.768
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_basic_lightcurves.py` (``examples/plot_basic_lightcurves.py``)
-     - 00:02.329
+     - 00:02.481
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_transformations.py` (``examples/plot_transformations.py``)
-     - 00:01.302
+     - 00:01.338
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_periodic_signals.py` (``examples/plot_periodic_signals.py``)
-     - 00:01.288
+     - 00:01.251
      - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_transients.py` (``examples/plot_transients.py``)
-     - 00:01.108
+     - 00:01.131
      - 0.0

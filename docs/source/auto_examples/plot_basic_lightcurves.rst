@@ -24,14 +24,13 @@ Basic Lightcurve Examples
 This example demonstrates the generation and visualization of basic random lightcurves
 using the hypothesis_lightcurves package.
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-19
+.. GENERATED FROM PYTHON SOURCE LINES 8-18
 
 .. code-block:: Python
 
 
     import matplotlib.pyplot as plt
     import numpy as np
-
     from hypothesis_lightcurves.generators import lightcurves
     from hypothesis_lightcurves.visualization import (
         create_gallery_plot,
@@ -46,13 +45,13 @@ using the hypothesis_lightcurves package.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 20-23
+.. GENERATED FROM PYTHON SOURCE LINES 19-22
 
 Generate a single random lightcurve
 ------------------------------------
 Let's start by generating and plotting a single random lightcurve.
 
-.. GENERATED FROM PYTHON SOURCE LINES 23-31
+.. GENERATED FROM PYTHON SOURCE LINES 22-30
 
 .. code-block:: Python
 
@@ -61,7 +60,7 @@ Let's start by generating and plotting a single random lightcurve.
     lc = lightcurves(min_points=100, max_points=200).example()
 
     fig, ax = plt.subplots(figsize=(10, 6))
-    plot_lightcurve(lc, ax=ax, title="Random Lightcurve Example", color='navy')
+    plot_lightcurve(lc, ax=ax, title="Random Lightcurve Example", color="navy")
     plt.show()
 
 
@@ -77,19 +76,19 @@ Let's start by generating and plotting a single random lightcurve.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_basic_lightcurves.py:25: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(min_points=100, max_points=200))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_basic_lightcurves.py:24: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(min_points=100, max_points=200))
       lc = lightcurves(min_points=100, max_points=200).example()
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 32-35
+.. GENERATED FROM PYTHON SOURCE LINES 31-34
 
 Generate lightcurves with different parameters
 -----------------------------------------------
 We can control various parameters when generating lightcurves.
 
-.. GENERATED FROM PYTHON SOURCE LINES 35-57
+.. GENERATED FROM PYTHON SOURCE LINES 34-56
 
 .. code-block:: Python
 
@@ -98,19 +97,19 @@ We can control various parameters when generating lightcurves.
 
     # Sparse lightcurve
     lc_sparse = lightcurves(min_points=20, max_points=30).example()
-    plot_lightcurve(lc_sparse, ax=axes[0, 0], title="Sparse Sampling", marker='o', markersize=6)
+    plot_lightcurve(lc_sparse, ax=axes[0, 0], title="Sparse Sampling", marker="o", markersize=6)
 
     # Dense lightcurve
     lc_dense = lightcurves(min_points=500, max_points=1000).example()
-    plot_lightcurve(lc_dense, ax=axes[0, 1], title="Dense Sampling", marker='', linestyle='-')
+    plot_lightcurve(lc_dense, ax=axes[0, 1], title="Dense Sampling", marker="", linestyle="-")
 
     # High flux range
     lc_bright = lightcurves(min_flux=1000, max_flux=10000).example()
-    plot_lightcurve(lc_bright, ax=axes[1, 0], title="High Flux Range", color='orange')
+    plot_lightcurve(lc_bright, ax=axes[1, 0], title="High Flux Range", color="orange")
 
     # With errors
     lc_errors = lightcurves(with_errors=True).example()
-    plot_lightcurve(lc_errors, ax=axes[1, 1], title="With Measurement Errors", color='green')
+    plot_lightcurve(lc_errors, ax=axes[1, 1], title="With Measurement Errors", color="green")
 
     plt.tight_layout()
     plt.show()
@@ -128,25 +127,25 @@ We can control various parameters when generating lightcurves.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_basic_lightcurves.py:39: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(min_points=20, max_points=30))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_basic_lightcurves.py:38: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(min_points=20, max_points=30))
       lc_sparse = lightcurves(min_points=20, max_points=30).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_basic_lightcurves.py:43: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(min_points=500, max_points=1000))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_basic_lightcurves.py:42: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(min_points=500, max_points=1000))
       lc_dense = lightcurves(min_points=500, max_points=1000).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_basic_lightcurves.py:47: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(min_flux=1000, max_flux=10000))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_basic_lightcurves.py:46: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(min_flux=1000, max_flux=10000))
       lc_bright = lightcurves(min_flux=1000, max_flux=10000).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_basic_lightcurves.py:51: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(with_errors=True))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_basic_lightcurves.py:50: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(with_errors=True))
       lc_errors = lightcurves(with_errors=True).example()
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 58-61
+.. GENERATED FROM PYTHON SOURCE LINES 57-60
 
 Lightcurve with annotations
 ----------------------------
 We can add statistical annotations to better understand the lightcurve properties.
 
-.. GENERATED FROM PYTHON SOURCE LINES 61-75
+.. GENERATED FROM PYTHON SOURCE LINES 60-68
 
 .. code-block:: Python
 
@@ -154,13 +153,7 @@ We can add statistical annotations to better understand the lightcurve propertie
     lc_annotated = lightcurves(min_points=150, max_points=200, with_errors=True).example()
 
     fig, ax = plt.subplots(figsize=(12, 7))
-    plot_with_annotations(
-        lc_annotated,
-        ax=ax,
-        annotate_statistics=True,
-        color='purple',
-        alpha=0.7
-    )
+    plot_with_annotations(lc_annotated, ax=ax, annotate_statistics=True, color="purple", alpha=0.7)
     ax.set_title("Annotated Lightcurve with Statistics", fontsize=14)
     plt.show()
 
@@ -177,19 +170,19 @@ We can add statistical annotations to better understand the lightcurve propertie
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_basic_lightcurves.py:62: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(min_points=150, max_points=200, with_errors=True))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_basic_lightcurves.py:61: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(min_points=150, max_points=200, with_errors=True))
       lc_annotated = lightcurves(min_points=150, max_points=200, with_errors=True).example()
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 76-79
+.. GENERATED FROM PYTHON SOURCE LINES 69-72
 
 Gallery of random lightcurves
 ------------------------------
 Let's create a gallery showing the diversity of generated lightcurves.
 
-.. GENERATED FROM PYTHON SOURCE LINES 79-91
+.. GENERATED FROM PYTHON SOURCE LINES 72-84
 
 .. code-block:: Python
 
@@ -201,7 +194,7 @@ Let's create a gallery showing the diversity of generated lightcurves.
         figsize=(15, 10),
         seed=123,
         min_points=50,
-        max_points=300
+        max_points=300,
     )
     plt.show()
 
@@ -224,13 +217,13 @@ Let's create a gallery showing the diversity of generated lightcurves.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 92-95
+.. GENERATED FROM PYTHON SOURCE LINES 85-88
 
 Comparing different flux distributions
 ---------------------------------------
 We can generate lightcurves with different flux characteristics.
 
-.. GENERATED FROM PYTHON SOURCE LINES 95-115
+.. GENERATED FROM PYTHON SOURCE LINES 88-109
 
 .. code-block:: Python
 
@@ -239,22 +232,23 @@ We can generate lightcurves with different flux characteristics.
 
     # Low baseline
     lc_low = lightcurves(min_flux=0, max_flux=100).example()
-    plot_lightcurve(lc_low, ax=axes[0], title="Low Flux (0-100)", color='blue')
+    plot_lightcurve(lc_low, ax=axes[0], title="Low Flux (0-100)", color="blue")
     axes[0].set_ylim(-10, 110)
 
     # Medium baseline
     lc_med = lightcurves(min_flux=900, max_flux=1100).example()
-    plot_lightcurve(lc_med, ax=axes[1], title="Medium Flux (900-1100)", color='green')
+    plot_lightcurve(lc_med, ax=axes[1], title="Medium Flux (900-1100)", color="green")
     axes[1].set_ylim(850, 1150)
 
     # High baseline
     lc_high = lightcurves(min_flux=9000, max_flux=11000).example()
-    plot_lightcurve(lc_high, ax=axes[2], title="High Flux (9000-11000)", color='red')
+    plot_lightcurve(lc_high, ax=axes[2], title="High Flux (9000-11000)", color="red")
     axes[2].set_ylim(8500, 11500)
 
     plt.suptitle("Lightcurves with Different Flux Baselines", fontsize=16, y=1.02)
     plt.tight_layout()
     plt.show()
+
 
 
 .. image-sg:: /auto_examples/images/sphx_glr_plot_basic_lightcurves_005.png
@@ -267,11 +261,11 @@ We can generate lightcurves with different flux characteristics.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_basic_lightcurves.py:99: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(min_flux=0, max_flux=100))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_basic_lightcurves.py:92: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(min_flux=0, max_flux=100))
       lc_low = lightcurves(min_flux=0, max_flux=100).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_basic_lightcurves.py:104: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(min_flux=900, max_flux=1100))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_basic_lightcurves.py:97: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(min_flux=900, max_flux=1100))
       lc_med = lightcurves(min_flux=900, max_flux=1100).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_basic_lightcurves.py:109: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(min_flux=9000, max_flux=11000))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_basic_lightcurves.py:102: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(min_flux=9000, max_flux=11000))
       lc_high = lightcurves(min_flux=9000, max_flux=11000).example()
 
 
@@ -280,7 +274,7 @@ We can generate lightcurves with different flux characteristics.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 2.329 seconds)
+   **Total running time of the script:** (0 minutes 2.481 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_basic_lightcurves.py:

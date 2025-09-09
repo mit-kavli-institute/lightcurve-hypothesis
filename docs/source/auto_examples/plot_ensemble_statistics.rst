@@ -24,14 +24,13 @@ Ensemble Statistics
 This example demonstrates statistical analysis of ensemble lightcurve generation,
 showing distributions and properties across many generated examples.
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-20
+.. GENERATED FROM PYTHON SOURCE LINES 8-19
 
 .. code-block:: Python
 
 
     import matplotlib.pyplot as plt
     import numpy as np
-
     from hypothesis_lightcurves.generators import (
         lightcurves,
         periodic_lightcurves,
@@ -47,13 +46,13 @@ showing distributions and properties across many generated examples.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 21-24
+.. GENERATED FROM PYTHON SOURCE LINES 20-23
 
 Statistical properties of random lightcurves
 ---------------------------------------------
 Analyze the distribution of properties across many random lightcurves.
 
-.. GENERATED FROM PYTHON SOURCE LINES 24-80
+.. GENERATED FROM PYTHON SOURCE LINES 23-82
 
 .. code-block:: Python
 
@@ -62,8 +61,7 @@ Analyze the distribution of properties across many random lightcurves.
     n_samples = 100
 
     # Generate ensemble
-    ensemble = [lightcurves(min_points=100, max_points=500).example()
-                for _ in range(n_samples)]
+    ensemble = [lightcurves(min_points=100, max_points=500).example() for _ in range(n_samples)]
 
     # Extract properties
     n_points = [lc.n_points for lc in ensemble]
@@ -74,42 +72,46 @@ Analyze the distribution of properties across many random lightcurves.
     fig, axes = plt.subplots(2, 2, figsize=(12, 10))
 
     # Number of points distribution
-    axes[0, 0].hist(n_points, bins=20, color='blue', alpha=0.7, edgecolor='black')
-    axes[0, 0].set_xlabel('Number of Points')
-    axes[0, 0].set_ylabel('Count')
-    axes[0, 0].set_title(f'Point Count Distribution (n={n_samples})')
-    axes[0, 0].axvline(np.mean(n_points), color='red', linestyle='--',
-                       label=f'Mean: {np.mean(n_points):.0f}')
+    axes[0, 0].hist(n_points, bins=20, color="blue", alpha=0.7, edgecolor="black")
+    axes[0, 0].set_xlabel("Number of Points")
+    axes[0, 0].set_ylabel("Count")
+    axes[0, 0].set_title(f"Point Count Distribution (n={n_samples})")
+    axes[0, 0].axvline(
+        np.mean(n_points), color="red", linestyle="--", label=f"Mean: {np.mean(n_points):.0f}"
+    )
     axes[0, 0].legend()
 
     # Duration distribution
-    axes[0, 1].hist(durations, bins=20, color='green', alpha=0.7, edgecolor='black')
-    axes[0, 1].set_xlabel('Duration')
-    axes[0, 1].set_ylabel('Count')
-    axes[0, 1].set_title('Duration Distribution')
-    axes[0, 1].axvline(np.mean(durations), color='red', linestyle='--',
-                       label=f'Mean: {np.mean(durations):.1f}')
+    axes[0, 1].hist(durations, bins=20, color="green", alpha=0.7, edgecolor="black")
+    axes[0, 1].set_xlabel("Duration")
+    axes[0, 1].set_ylabel("Count")
+    axes[0, 1].set_title("Duration Distribution")
+    axes[0, 1].axvline(
+        np.mean(durations), color="red", linestyle="--", label=f"Mean: {np.mean(durations):.1f}"
+    )
     axes[0, 1].legend()
 
     # Mean flux distribution
-    axes[1, 0].hist(mean_fluxes, bins=20, color='orange', alpha=0.7, edgecolor='black')
-    axes[1, 0].set_xlabel('Mean Flux')
-    axes[1, 0].set_ylabel('Count')
-    axes[1, 0].set_title('Mean Flux Distribution')
-    axes[1, 0].axvline(np.mean(mean_fluxes), color='red', linestyle='--',
-                       label=f'Mean: {np.mean(mean_fluxes):.1f}')
+    axes[1, 0].hist(mean_fluxes, bins=20, color="orange", alpha=0.7, edgecolor="black")
+    axes[1, 0].set_xlabel("Mean Flux")
+    axes[1, 0].set_ylabel("Count")
+    axes[1, 0].set_title("Mean Flux Distribution")
+    axes[1, 0].axvline(
+        np.mean(mean_fluxes), color="red", linestyle="--", label=f"Mean: {np.mean(mean_fluxes):.1f}"
+    )
     axes[1, 0].legend()
 
     # Standard deviation distribution
-    axes[1, 1].hist(std_fluxes, bins=20, color='purple', alpha=0.7, edgecolor='black')
-    axes[1, 1].set_xlabel('Flux Std Dev')
-    axes[1, 1].set_ylabel('Count')
-    axes[1, 1].set_title('Flux Standard Deviation Distribution')
-    axes[1, 1].axvline(np.mean(std_fluxes), color='red', linestyle='--',
-                       label=f'Mean: {np.mean(std_fluxes):.1f}')
+    axes[1, 1].hist(std_fluxes, bins=20, color="purple", alpha=0.7, edgecolor="black")
+    axes[1, 1].set_xlabel("Flux Std Dev")
+    axes[1, 1].set_ylabel("Count")
+    axes[1, 1].set_title("Flux Standard Deviation Distribution")
+    axes[1, 1].axvline(
+        np.mean(std_fluxes), color="red", linestyle="--", label=f"Mean: {np.mean(std_fluxes):.1f}"
+    )
     axes[1, 1].legend()
 
-    plt.suptitle(f'Ensemble Statistics of {n_samples} Random Lightcurves', fontsize=16, y=1.02)
+    plt.suptitle(f"Ensemble Statistics of {n_samples} Random Lightcurves", fontsize=16, y=1.02)
     plt.tight_layout()
     plt.show()
 
@@ -126,19 +128,19 @@ Analyze the distribution of properties across many random lightcurves.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:29: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(min_points=100, max_points=500))
-      ensemble = [lightcurves(min_points=100, max_points=500).example()
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:28: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(min_points=100, max_points=500))
+      ensemble = [lightcurves(min_points=100, max_points=500).example() for _ in range(n_samples)]
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 81-84
+.. GENERATED FROM PYTHON SOURCE LINES 83-86
 
 Period recovery statistics
 ---------------------------
 Test how well we can recover periods from generated periodic lightcurves.
 
-.. GENERATED FROM PYTHON SOURCE LINES 84-153
+.. GENERATED FROM PYTHON SOURCE LINES 86-158
 
 .. code-block:: Python
 
@@ -157,10 +159,10 @@ Test how well we can recover periods from generated periodic lightcurves.
             max_amplitude=0.3,
             with_noise=True,
             min_points=200,
-            max_points=400
+            max_points=400,
         ).example()
 
-        true_period = lc.metadata['period']
+        true_period = lc.metadata["period"]
         true_periods.append(true_period)
 
         # Try to recover the period
@@ -177,33 +179,36 @@ Test how well we can recover periods from generated periodic lightcurves.
 
     # True vs Detected periods
     axes[0].scatter(true_periods, detected_periods, alpha=0.6, s=30)
-    axes[0].plot([0, 6], [0, 6], 'r--', label='Perfect Recovery')
-    axes[0].set_xlabel('True Period')
-    axes[0].set_ylabel('Detected Period')
-    axes[0].set_title(f'Period Recovery (n={n_tests})')
+    axes[0].plot([0, 6], [0, 6], "r--", label="Perfect Recovery")
+    axes[0].set_xlabel("True Period")
+    axes[0].set_ylabel("Detected Period")
+    axes[0].set_title(f"Period Recovery (n={n_tests})")
     axes[0].legend()
     axes[0].grid(True, alpha=0.3)
 
     # Error distribution
-    axes[1].hist(recovery_errors, bins=15, color='green', alpha=0.7, edgecolor='black')
-    axes[1].set_xlabel('Relative Error (%)')
-    axes[1].set_ylabel('Count')
-    axes[1].set_title('Period Recovery Error Distribution')
-    axes[1].axvline(np.median(recovery_errors), color='red', linestyle='--',
-                   label=f'Median: {np.median(recovery_errors):.1f}%')
+    axes[1].hist(recovery_errors, bins=15, color="green", alpha=0.7, edgecolor="black")
+    axes[1].set_xlabel("Relative Error (%)")
+    axes[1].set_ylabel("Count")
+    axes[1].set_title("Period Recovery Error Distribution")
+    axes[1].axvline(
+        np.median(recovery_errors),
+        color="red",
+        linestyle="--",
+        label=f"Median: {np.median(recovery_errors):.1f}%",
+    )
     axes[1].legend()
 
     # Error vs True Period
-    axes[2].scatter(true_periods, recovery_errors, alpha=0.6, s=30, color='purple')
-    axes[2].set_xlabel('True Period')
-    axes[2].set_ylabel('Relative Error (%)')
-    axes[2].set_title('Recovery Error vs True Period')
-    axes[2].axhline(5, color='red', linestyle='--', alpha=0.5, label='5% threshold')
+    axes[2].scatter(true_periods, recovery_errors, alpha=0.6, s=30, color="purple")
+    axes[2].set_xlabel("True Period")
+    axes[2].set_ylabel("Relative Error (%)")
+    axes[2].set_title("Recovery Error vs True Period")
+    axes[2].axhline(5, color="red", linestyle="--", alpha=0.5, label="5% threshold")
     axes[2].legend()
     axes[2].grid(True, alpha=0.3)
 
-    plt.suptitle(f'Period Recovery Statistics from {n_tests} Periodic Lightcurves',
-                 fontsize=16, y=1.02)
+    plt.suptitle(f"Period Recovery Statistics from {n_tests} Periodic Lightcurves", fontsize=16, y=1.02)
     plt.tight_layout()
     plt.show()
 
@@ -224,22 +229,22 @@ Test how well we can recover periods from generated periodic lightcurves.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:100: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=200, max_points=400, min_period=1.0, max_period=5.0, min_amplitude=0.1, max_amplitude=0.3))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:102: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=200, max_points=400, min_period=1.0, max_period=5.0, min_amplitude=0.1, max_amplitude=0.3))
       ).example()
     Recovery success rate (< 5% error): 100.0%
-    Mean recovery error: 0.95%
-    Median recovery error: 0.15%
+    Mean recovery error: 0.97%
+    Median recovery error: 0.28%
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 154-157
+.. GENERATED FROM PYTHON SOURCE LINES 159-162
 
 Transient peak detection accuracy
 ----------------------------------
 Analyze how accurately we can detect transient peaks.
 
-.. GENERATED FROM PYTHON SOURCE LINES 157-211
+.. GENERATED FROM PYTHON SOURCE LINES 162-224
 
 .. code-block:: Python
 
@@ -255,11 +260,11 @@ Analyze how accurately we can detect transient peaks.
             min_rise_time=1.0,
             max_rise_time=5.0,
             min_decay_time=5.0,
-            max_decay_time=20.0
+            max_decay_time=20.0,
         ).example()
 
-        true_peak_time = lc.metadata['peak_time']
-        true_peak_flux = lc.metadata['peak_flux']
+        true_peak_time = lc.metadata["peak_time"]
+        true_peak_flux = lc.metadata["peak_flux"]
 
         # Detect peak
         peak_idx = np.argmax(lc.flux)
@@ -276,24 +281,32 @@ Analyze how accurately we can detect transient peaks.
     fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
     # Peak time error distribution
-    axes[0].hist(peak_time_errors, bins=15, color='blue', alpha=0.7, edgecolor='black')
-    axes[0].set_xlabel('Peak Time Error')
-    axes[0].set_ylabel('Count')
-    axes[0].set_title(f'Peak Time Detection Error (n={n_transients})')
-    axes[0].axvline(np.median(peak_time_errors), color='red', linestyle='--',
-                    label=f'Median: {np.median(peak_time_errors):.2f}')
+    axes[0].hist(peak_time_errors, bins=15, color="blue", alpha=0.7, edgecolor="black")
+    axes[0].set_xlabel("Peak Time Error")
+    axes[0].set_ylabel("Count")
+    axes[0].set_title(f"Peak Time Detection Error (n={n_transients})")
+    axes[0].axvline(
+        np.median(peak_time_errors),
+        color="red",
+        linestyle="--",
+        label=f"Median: {np.median(peak_time_errors):.2f}",
+    )
     axes[0].legend()
 
     # Peak flux error distribution
-    axes[1].hist(peak_flux_errors, bins=15, color='orange', alpha=0.7, edgecolor='black')
-    axes[1].set_xlabel('Peak Flux Error (%)')
-    axes[1].set_ylabel('Count')
-    axes[1].set_title('Peak Flux Detection Error')
-    axes[1].axvline(np.median(peak_flux_errors), color='red', linestyle='--',
-                    label=f'Median: {np.median(peak_flux_errors):.1f}%')
+    axes[1].hist(peak_flux_errors, bins=15, color="orange", alpha=0.7, edgecolor="black")
+    axes[1].set_xlabel("Peak Flux Error (%)")
+    axes[1].set_ylabel("Count")
+    axes[1].set_title("Peak Flux Detection Error")
+    axes[1].axvline(
+        np.median(peak_flux_errors),
+        color="red",
+        linestyle="--",
+        label=f"Median: {np.median(peak_flux_errors):.1f}%",
+    )
     axes[1].legend()
 
-    plt.suptitle(f'Transient Peak Detection Statistics (n={n_transients})', fontsize=16, y=1.02)
+    plt.suptitle(f"Transient Peak Detection Statistics (n={n_transients})", fontsize=16, y=1.02)
     plt.tight_layout()
     plt.show()
 
@@ -310,19 +323,19 @@ Analyze how accurately we can detect transient peaks.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:170: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_peak_time=20, max_peak_time=60, min_rise_time=1.0, max_rise_time=5.0, min_decay_time=5.0, max_decay_time=20.0))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:175: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_peak_time=20, max_peak_time=60, min_rise_time=1.0, max_rise_time=5.0, min_decay_time=5.0, max_decay_time=20.0))
       ).example()
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 212-215
+.. GENERATED FROM PYTHON SOURCE LINES 225-228
 
 Ensemble visualization
 -----------------------
 Visualize multiple examples from each generator type.
 
-.. GENERATED FROM PYTHON SOURCE LINES 215-247
+.. GENERATED FROM PYTHON SOURCE LINES 228-253
 
 .. code-block:: Python
 
@@ -332,29 +345,22 @@ Visualize multiple examples from each generator type.
     # Row 1: Random lightcurves
     for i in range(3):
         lc = lightcurves(with_errors=True).example()
-        plot_lightcurve(lc, ax=axes[0, i], color=f'C{i}', marker='', linewidth=1)
-        axes[0, i].set_title(f'Random {i+1}')
+        plot_lightcurve(lc, ax=axes[0, i], color=f"C{i}", marker="", linewidth=1)
+        axes[0, i].set_title(f"Random {i+1}")
 
     # Row 2: Periodic lightcurves
     for i in range(3):
-        lc = periodic_lightcurves(
-            min_period=1.0 + i,
-            max_period=1.0 + i,
-            with_noise=True
-        ).example()
-        plot_lightcurve(lc, ax=axes[1, i], color=f'C{i+3}', marker='', linewidth=1)
-        axes[1, i].set_title(f'Periodic (P≈{1.0+i:.1f})')
+        lc = periodic_lightcurves(min_period=1.0 + i, max_period=1.0 + i, with_noise=True).example()
+        plot_lightcurve(lc, ax=axes[1, i], color=f"C{i+3}", marker="", linewidth=1)
+        axes[1, i].set_title(f"Periodic (P≈{1.0+i:.1f})")
 
     # Row 3: Transient lightcurves
     for i in range(3):
-        lc = transient_lightcurves(
-            min_rise_time=1.0 + i*2,
-            max_rise_time=1.0 + i*2
-        ).example()
-        plot_lightcurve(lc, ax=axes[2, i], color=f'C{i+6}', marker='.', markersize=2, linestyle='')
-        axes[2, i].set_title(f'Transient (τ_r≈{1.0+i*2:.1f})')
+        lc = transient_lightcurves(min_rise_time=1.0 + i * 2, max_rise_time=1.0 + i * 2).example()
+        plot_lightcurve(lc, ax=axes[2, i], color=f"C{i+6}", marker=".", markersize=2, linestyle="")
+        axes[2, i].set_title(f"Transient (τ_r≈{1.0+i*2:.1f})")
 
-    plt.suptitle('Ensemble Examples from Different Generators', fontsize=16, y=1.01)
+    plt.suptitle("Ensemble Examples from Different Generators", fontsize=16, y=1.01)
     plt.tight_layout()
     plt.show()
 
@@ -371,31 +377,31 @@ Visualize multiple examples from each generator type.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:220: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(with_errors=True))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:233: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: lightcurves(with_errors=True))
       lc = lightcurves(with_errors=True).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:230: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_period=1.0, max_period=1.0))
-      ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:230: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_period=2.0, max_period=2.0))
-      ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:230: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_period=3.0, max_period=3.0))
-      ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:239: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_rise_time=1.0, max_rise_time=1.0))
-      ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:239: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_rise_time=3.0, max_rise_time=3.0))
-      ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:239: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_rise_time=5.0, max_rise_time=5.0))
-      ).example()
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:239: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_period=1.0, max_period=1.0))
+      lc = periodic_lightcurves(min_period=1.0 + i, max_period=1.0 + i, with_noise=True).example()
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:239: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_period=2.0, max_period=2.0))
+      lc = periodic_lightcurves(min_period=1.0 + i, max_period=1.0 + i, with_noise=True).example()
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:239: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_period=3.0, max_period=3.0))
+      lc = periodic_lightcurves(min_period=1.0 + i, max_period=1.0 + i, with_noise=True).example()
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:245: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_rise_time=1.0, max_rise_time=1.0))
+      lc = transient_lightcurves(min_rise_time=1.0 + i * 2, max_rise_time=1.0 + i * 2).example()
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:245: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_rise_time=3.0, max_rise_time=3.0))
+      lc = transient_lightcurves(min_rise_time=1.0 + i * 2, max_rise_time=1.0 + i * 2).example()
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:245: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_rise_time=5.0, max_rise_time=5.0))
+      lc = transient_lightcurves(min_rise_time=1.0 + i * 2, max_rise_time=1.0 + i * 2).example()
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 248-251
+.. GENERATED FROM PYTHON SOURCE LINES 254-257
 
 Signal-to-noise ratio analysis
 -------------------------------
 Analyze SNR for periodic signals with different noise levels.
 
-.. GENERATED FROM PYTHON SOURCE LINES 251-304
+.. GENERATED FROM PYTHON SOURCE LINES 257-316
 
 .. code-block:: Python
 
@@ -421,7 +427,7 @@ Analyze SNR for periodic signals with different noise levels.
                 max_amplitude=amplitude,
                 with_noise=True,
                 min_points=300,
-                max_points=300
+                max_points=300,
             ).example()
 
             # Estimate SNR
@@ -436,19 +442,25 @@ Analyze SNR for periodic signals with different noise levels.
             snr_values.append(snr)
 
         # Plot one example
-        plot_lightcurve(lc, ax=ax, color='gray', alpha=0.5, marker='.', markersize=1, linestyle='')
+        plot_lightcurve(lc, ax=ax, color="gray", alpha=0.5, marker=".", markersize=1, linestyle="")
 
         # Add SNR info
         mean_snr = np.mean(snr_values)
-        ax.set_title(f'Amplitude={amplitude:.2f}, Mean SNR={mean_snr:.1f}')
+        ax.set_title(f"Amplitude={amplitude:.2f}, Mean SNR={mean_snr:.1f}")
 
         # Add text box with statistics
-        stats_text = f'SNR: {mean_snr:.1f} ± {np.std(snr_values):.1f}'
-        ax.text(0.02, 0.98, stats_text, transform=ax.transAxes, fontsize=10,
-                verticalalignment='top',
-                bbox=dict(boxstyle='round', facecolor='yellow', alpha=0.7))
+        stats_text = f"SNR: {mean_snr:.1f} ± {np.std(snr_values):.1f}"
+        ax.text(
+            0.02,
+            0.98,
+            stats_text,
+            transform=ax.transAxes,
+            fontsize=10,
+            verticalalignment="top",
+            bbox=dict(boxstyle="round", facecolor="yellow", alpha=0.7),
+        )
 
-    plt.suptitle('Signal-to-Noise Ratio Analysis for Different Amplitudes', fontsize=16, y=1.02)
+    plt.suptitle("Signal-to-Noise Ratio Analysis for Different Amplitudes", fontsize=16, y=1.02)
     plt.tight_layout()
     plt.show()
 
@@ -456,7 +468,7 @@ Analyze SNR for periodic signals with different noise levels.
 
 
 .. image-sg:: /auto_examples/images/sphx_glr_plot_ensemble_statistics_005.png
-   :alt: Signal-to-Noise Ratio Analysis for Different Amplitudes, Amplitude=0.05, Mean SNR=26.6, Amplitude=0.10, Mean SNR=40.7, Amplitude=0.20, Mean SNR=48.1, Amplitude=0.50, Mean SNR=96.9
+   :alt: Signal-to-Noise Ratio Analysis for Different Amplitudes, Amplitude=0.05, Mean SNR=31.2, Amplitude=0.10, Mean SNR=51.6, Amplitude=0.20, Mean SNR=82.1, Amplitude=0.50, Mean SNR=101.7
    :srcset: /auto_examples/images/sphx_glr_plot_ensemble_statistics_005.png
    :class: sphx-glr-single-img
 
@@ -465,96 +477,91 @@ Analyze SNR for periodic signals with different noise levels.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:274: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=2.5, max_period=2.5, min_amplitude=0.05, max_amplitude=0.05))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:280: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=2.5, max_period=2.5, min_amplitude=0.05, max_amplitude=0.05))
       ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:274: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=2.5, max_period=2.5, min_amplitude=0.1, max_amplitude=0.1))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:280: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=2.5, max_period=2.5, min_amplitude=0.1, max_amplitude=0.1))
       ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:274: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=2.5, max_period=2.5, min_amplitude=0.2, max_amplitude=0.2))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:280: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=2.5, max_period=2.5, min_amplitude=0.2, max_amplitude=0.2))
       ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:274: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=2.5, max_period=2.5, min_amplitude=0.5, max_amplitude=0.5))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:280: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_points=300, max_points=300, min_period=2.5, max_period=2.5, min_amplitude=0.5, max_amplitude=0.5))
       ).example()
 
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 305-308
+.. GENERATED FROM PYTHON SOURCE LINES 317-320
 
 Coverage test for parameter ranges
 -----------------------------------
 Verify that generated parameters cover the requested ranges.
 
-.. GENERATED FROM PYTHON SOURCE LINES 308-375
+.. GENERATED FROM PYTHON SOURCE LINES 320-382
 
 .. code-block:: Python
 
 
     n_samples = 100
     param_coverage = {
-        'periods': [],
-        'amplitudes': [],
-        'peak_times': [],
-        'rise_times': [],
+        "periods": [],
+        "amplitudes": [],
+        "peak_times": [],
+        "rise_times": [],
     }
 
     # Generate periodic lightcurves
     for _ in range(n_samples):
         lc = periodic_lightcurves(
-            min_period=1.0,
-            max_period=5.0,
-            min_amplitude=0.05,
-            max_amplitude=0.5
+            min_period=1.0, max_period=5.0, min_amplitude=0.05, max_amplitude=0.5
         ).example()
-        param_coverage['periods'].append(lc.metadata['period'])
-        param_coverage['amplitudes'].append(lc.metadata['amplitude'])
+        param_coverage["periods"].append(lc.metadata["period"])
+        param_coverage["amplitudes"].append(lc.metadata["amplitude"])
 
     # Generate transient lightcurves
     for _ in range(n_samples):
         lc = transient_lightcurves(
-            min_peak_time=10,
-            max_peak_time=50,
-            min_rise_time=1.0,
-            max_rise_time=10.0
+            min_peak_time=10, max_peak_time=50, min_rise_time=1.0, max_rise_time=10.0
         ).example()
-        param_coverage['peak_times'].append(lc.metadata['peak_time'])
-        param_coverage['rise_times'].append(lc.metadata['rise_time'])
+        param_coverage["peak_times"].append(lc.metadata["peak_time"])
+        param_coverage["rise_times"].append(lc.metadata["rise_time"])
 
     fig, axes = plt.subplots(2, 2, figsize=(12, 10))
 
     # Periods
-    axes[0, 0].hist(param_coverage['periods'], bins=20, color='blue', alpha=0.7, edgecolor='black')
-    axes[0, 0].axvline(1.0, color='red', linestyle='--', label='Min')
-    axes[0, 0].axvline(5.0, color='red', linestyle='--', label='Max')
-    axes[0, 0].set_xlabel('Period')
-    axes[0, 0].set_title(f"Period Coverage (requested: 1.0-5.0)")
+    axes[0, 0].hist(param_coverage["periods"], bins=20, color="blue", alpha=0.7, edgecolor="black")
+    axes[0, 0].axvline(1.0, color="red", linestyle="--", label="Min")
+    axes[0, 0].axvline(5.0, color="red", linestyle="--", label="Max")
+    axes[0, 0].set_xlabel("Period")
+    axes[0, 0].set_title("Period Coverage (requested: 1.0-5.0)")
     axes[0, 0].legend()
 
     # Amplitudes
-    axes[0, 1].hist(param_coverage['amplitudes'], bins=20, color='green', alpha=0.7, edgecolor='black')
-    axes[0, 1].axvline(0.05, color='red', linestyle='--', label='Min')
-    axes[0, 1].axvline(0.5, color='red', linestyle='--', label='Max')
-    axes[0, 1].set_xlabel('Amplitude')
-    axes[0, 1].set_title(f"Amplitude Coverage (requested: 0.05-0.5)")
+    axes[0, 1].hist(param_coverage["amplitudes"], bins=20, color="green", alpha=0.7, edgecolor="black")
+    axes[0, 1].axvline(0.05, color="red", linestyle="--", label="Min")
+    axes[0, 1].axvline(0.5, color="red", linestyle="--", label="Max")
+    axes[0, 1].set_xlabel("Amplitude")
+    axes[0, 1].set_title("Amplitude Coverage (requested: 0.05-0.5)")
     axes[0, 1].legend()
 
     # Peak times
-    axes[1, 0].hist(param_coverage['peak_times'], bins=20, color='orange', alpha=0.7, edgecolor='black')
-    axes[1, 0].axvline(10, color='red', linestyle='--', label='Min')
-    axes[1, 0].axvline(50, color='red', linestyle='--', label='Max')
-    axes[1, 0].set_xlabel('Peak Time')
-    axes[1, 0].set_title(f"Peak Time Coverage (requested: 10-50)")
+    axes[1, 0].hist(param_coverage["peak_times"], bins=20, color="orange", alpha=0.7, edgecolor="black")
+    axes[1, 0].axvline(10, color="red", linestyle="--", label="Min")
+    axes[1, 0].axvline(50, color="red", linestyle="--", label="Max")
+    axes[1, 0].set_xlabel("Peak Time")
+    axes[1, 0].set_title("Peak Time Coverage (requested: 10-50)")
     axes[1, 0].legend()
 
     # Rise times
-    axes[1, 1].hist(param_coverage['rise_times'], bins=20, color='purple', alpha=0.7, edgecolor='black')
-    axes[1, 1].axvline(1.0, color='red', linestyle='--', label='Min')
-    axes[1, 1].axvline(10.0, color='red', linestyle='--', label='Max')
-    axes[1, 1].set_xlabel('Rise Time')
-    axes[1, 1].set_title(f"Rise Time Coverage (requested: 1.0-10.0)")
+    axes[1, 1].hist(param_coverage["rise_times"], bins=20, color="purple", alpha=0.7, edgecolor="black")
+    axes[1, 1].axvline(1.0, color="red", linestyle="--", label="Min")
+    axes[1, 1].axvline(10.0, color="red", linestyle="--", label="Max")
+    axes[1, 1].set_xlabel("Rise Time")
+    axes[1, 1].set_title("Rise Time Coverage (requested: 1.0-10.0)")
     axes[1, 1].legend()
 
-    plt.suptitle(f'Parameter Coverage Test (n={n_samples} each)', fontsize=16, y=1.02)
+    plt.suptitle(f"Parameter Coverage Test (n={n_samples} each)", fontsize=16, y=1.02)
     plt.tight_layout()
     plt.show()
+
 
 
 .. image-sg:: /auto_examples/images/sphx_glr_plot_ensemble_statistics_006.png
@@ -567,9 +574,9 @@ Verify that generated parameters cover the requested ranges.
 
  .. code-block:: none
 
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:324: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_period=1.0, max_period=5.0, min_amplitude=0.05, max_amplitude=0.5))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:333: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: periodic_lightcurves(min_period=1.0, max_period=5.0, min_amplitude=0.05, max_amplitude=0.5))
       ).example()
-    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:335: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_peak_time=10, max_peak_time=50, min_rise_time=1.0, max_rise_time=10.0))
+    /home/williamfong/Documents/Projects/lightcurve-hypothesis/docs/source/examples/plot_ensemble_statistics.py:341: NonInteractiveExampleWarning: The `.example()` method is good for exploring strategies, but should only be used interactively.  We recommend using `@given` for tests - it performs better, saves and replays failures to avoid flakiness, and reports minimal examples. (strategy: transient_lightcurves(min_peak_time=10, max_peak_time=50, min_rise_time=1.0, max_rise_time=10.0))
       ).example()
 
 
@@ -578,7 +585,7 @@ Verify that generated parameters cover the requested ranges.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 14.682 seconds)
+   **Total running time of the script:** (0 minutes 15.768 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_ensemble_statistics.py:

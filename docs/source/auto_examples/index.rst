@@ -18,6 +18,7 @@ Each example includes complete, runnable code that you can use as a starting poi
 for your own lightcurve analysis and testing workflows.
 
 
+
 .. raw:: html
 
     <div class="sphx-glr-thumbnails">
