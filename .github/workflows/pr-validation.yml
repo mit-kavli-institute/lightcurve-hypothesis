@@ -1,0 +1,112 @@
+name: PR Validation
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  validate-title:
+    name: Validate PR Title
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check PR title follows conventional commits
+      uses: amannn/action-semantic-pull-request@v5
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        types: |
+          feat
+          fix
+          docs
+          style
+          refactor
+          perf
+          test
+          build
+          ci
+          chore
+          revert
+        requireScope: false
+        subjectPattern: ^(?![A-Z]).+$
+        subjectPatternError: |
+          The subject "{subject}" found in the pull request title "{title}"
+          didn't match the configured pattern. Please ensure that the subject
+          doesn't start with an uppercase character.
+
+  check-size:
+    name: Check PR Size
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Check PR size
+      run: |
+        # Get the diff stats
+        CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | wc -l)
+        ADDITIONS=$(git diff --numstat origin/${{ github.base_ref }}...HEAD | awk '{sum+=$1} END {print sum}')
+        DELETIONS=$(git diff --numstat origin/${{ github.base_ref }}...HEAD | awk '{sum+=$2} END {print sum}')
+
+        echo "Changed files: $CHANGED_FILES"
+        echo "Additions: $ADDITIONS"
+        echo "Deletions: $DELETIONS"
+
+        # Warn if PR is too large
+        if [ "$CHANGED_FILES" -gt 50 ]; then
+          echo "::warning::This PR changes $CHANGED_FILES files. Consider breaking it into smaller PRs."
+        fi
+
+        if [ "$ADDITIONS" -gt 1000 ]; then
+          echo "::warning::This PR adds $ADDITIONS lines. Consider breaking it into smaller PRs."
+        fi
+
+  label-pr:
+    name: Auto-label PR
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/labeler@v5
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        configuration-path: .github/labeler.yml
+
+  check-conflicts:
+    name: Check for Merge Conflicts
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Check for merge conflicts
+      run: |
+        git fetch origin ${{ github.base_ref }}
+        if git merge-tree $(git merge-base HEAD origin/${{ github.base_ref }}) HEAD origin/${{ github.base_ref }} | grep -q "<<<<<<< "; then
+          echo "::error::This PR has merge conflicts. Please resolve them."
+          exit 1
+        fi
+
+  welcome:
+    name: Welcome First-Time Contributors
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.author_association == 'FIRST_TIME_CONTRIBUTOR'
+
+    steps:
+    - name: Welcome message
+      uses: actions/github-script@v7
+      with:
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '👋 Welcome @${{ github.event.pull_request.user.login }}! Thank you for your contribution to hypothesis-lightcurves!\n\nThis appears to be your first pull request. Please make sure you have:\n- [ ] Read our [contributing guidelines](CONTRIBUTING.md)\n- [ ] Followed the PR template\n- [ ] Added tests for your changes\n- [ ] Updated documentation if needed\n\nA maintainer will review your PR soon. In the meantime, please ensure all CI checks pass.'
+          })

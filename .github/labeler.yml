@@ -1,0 +1,54 @@
+# Configuration for GitHub labeler action
+
+documentation:
+  - changed-files:
+    - any-glob-to-any-file:
+      - docs/**
+      - '*.md'
+      - '*.rst'
+
+tests:
+  - changed-files:
+    - any-glob-to-any-file:
+      - tests/**
+      - '**/test_*.py'
+      - '**/*_test.py'
+      - noxfile.py
+
+source:
+  - changed-files:
+    - any-glob-to-any-file:
+      - src/**
+
+dependencies:
+  - changed-files:
+    - any-glob-to-any-file:
+      - pyproject.toml
+      - requirements*.txt
+      - .pre-commit-config.yaml
+
+ci:
+  - changed-files:
+    - any-glob-to-any-file:
+      - .github/**
+      - noxfile.py
+
+models:
+  - changed-files:
+    - any-glob-to-any-file:
+      - src/hypothesis_lightcurves/models.py
+
+generators:
+  - changed-files:
+    - any-glob-to-any-file:
+      - src/hypothesis_lightcurves/generators.py
+
+modifiers:
+  - changed-files:
+    - any-glob-to-any-file:
+      - src/hypothesis_lightcurves/modifiers.py
+
+utils:
+  - changed-files:
+    - any-glob-to-any-file:
+      - src/hypothesis_lightcurves/utils.py
